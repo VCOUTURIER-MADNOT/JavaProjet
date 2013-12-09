@@ -1,6 +1,5 @@
-package JavaRMI.NotifyLists;
+package Util.NotifyLists;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,9 +20,9 @@ public abstract class NotifyList<E> extends ArrayList<E> {
 	
 	public 		abstract void 		addToXML(E _o);
 	public 		abstract void 		removeFromXML(Object _o);
-	protected 	abstract Element 	getElementFromId(String _id);
-	protected	abstract Element	getElementFromObject(Object _o);
-	protected	abstract Object		getObjectFromElement(Element _e);
+	public   	abstract Element 	getElementFromId(String _id);
+	public          abstract Element	getElementFromObject(Object _o);
+	public     	abstract Object		getObjectFromElement(Element _e);
 	
 	public int getSize()
 	{

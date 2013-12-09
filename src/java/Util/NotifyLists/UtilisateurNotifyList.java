@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package JavaRMI.NotifyLists;
+package Util.NotifyLists;
 
 import JavaRMI.Classes.Utilisateur;
 import java.io.File;
@@ -13,10 +7,7 @@ import java.util.List;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
-/**
- *
- * @author Valentin
- */
+
 public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
 
     public UtilisateurNotifyList() {
@@ -25,17 +16,16 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));
+            this.racine = this.document.getRootElement();
+
+            for (Element eUtilisateur : this.racine.getChildren("Utilisateur"))
+            {
+                this.add((Utilisateur) this.getObjectFromElement(eUtilisateur), false);
+            }
         }
         catch(Exception e)
         {
             e.printStackTrace();
-        }
-
-        this.racine = this.document.getRootElement();
-        
-        for (Element eUtilisateur : this.racine.getChildren("Utilisateur"))
-        {
-            this.add((Utilisateur) this.getObjectFromElement(eUtilisateur), false);
         }
     }
     
@@ -59,7 +49,7 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
     }
 
     @Override
-    protected Element getElementFromId(String _id) {
+    public Element getElementFromId(String _id) {
         List<Element> utilisateurs = this.racine.getChildren("Utilisateur");
         Iterator<Element> iterator = utilisateurs.iterator();
         Element eUtilisateur = null;
@@ -76,7 +66,7 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
     }
 
     @Override
-    protected Element getElementFromObject(Object _o) {
+    public Element getElementFromObject(Object _o) {
         Element eUtilisateur = null;
         if (_o instanceof Utilisateur)
         {
@@ -88,12 +78,8 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
     }
 
     @Override
-    protected Object getObjectFromElement(Element _e) {
-        Utilisateur u = null;
-        
-        u = new Utilisateur(_e.getChildText("Login"), _e.getChildText("Password"), _e.getChildText("Nom"), Integer.valueOf(_e.getChildText("UserLevel")));
-        
-        return u;
+    public Object getObjectFromElement(Element _e) {
+         return new Utilisateur(_e.getChildText("Login"), _e.getChildText("Password"), _e.getChildText("Nom"), Integer.valueOf(_e.getChildText("UserLevel")));
     }
     
 }

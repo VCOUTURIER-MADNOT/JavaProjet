@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package JavaRMI.Classes;
 
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
@@ -11,13 +5,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author valentin
- */
 public class Boutique {
 
     private String          nom;
@@ -35,7 +23,7 @@ public class Boutique {
             this.tcpPort = _tcpPort;
             this.udpPort = _udpPort;
         } catch (UnknownHostException ex) {
-            Logger.getLogger(Boutique.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -82,7 +70,7 @@ public class Boutique {
         try {
             this.ip = (Inet4Address) InetAddress.getAllByName(split[0])[0];
         } catch (UnknownHostException ex) {
-            Logger.getLogger(Boutique.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 

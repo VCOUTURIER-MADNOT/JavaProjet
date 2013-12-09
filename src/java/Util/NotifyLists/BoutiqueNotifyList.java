@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package JavaRMI.NotifyLists;
+package Util.NotifyLists;
 
 import JavaRMI.Classes.Boutique;
-import JavaRMI.Classes.Utilisateur;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -16,10 +9,6 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-/**
- *
- * @author valentin
- */
 public class BoutiqueNotifyList extends NotifyList<Boutique>{
 
     public BoutiqueNotifyList(){
@@ -28,18 +17,17 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));
+                    this.racine = this.document.getRootElement();
+        
+            for (Element eBoutique : this.racine.getChildren("Boutique"))
+            {
+                this.add((Boutique) this.getObjectFromElement(eBoutique), false);
+            } 
         }
         catch(IOException | JDOMException e)
         {
             e.printStackTrace();
         }
-
-        this.racine = this.document.getRootElement();
-        
-        for (Element eBoutique : this.racine.getChildren("Boutique"))
-        {
-            this.add((Boutique) this.getObjectFromElement(eBoutique), false);
-        } 
     }
 
     @Override
@@ -62,7 +50,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
     }
 
     @Override
-    protected Element getElementFromId(String _id) {
+    public Element getElementFromId(String _id) {
         List<Element> boutiques = this.racine.getChildren("Boutique");
         Iterator<Element> iterator = boutiques.iterator();
         while(iterator.hasNext())
@@ -78,7 +66,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
     }
 
     @Override
-    protected Element getElementFromObject(Object _o) {
+    public Element getElementFromObject(Object _o) {
         Element eBoutique = null;
         if(_o instanceof Boutique)
         {
@@ -112,10 +100,9 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
     }
 
     @Override
-    protected Object getObjectFromElement(Element _e) {
+    public Object getObjectFromElement(Element _e) {
         Boutique b = new Boutique(_e.getChildText("Nom"), _e.getChildText("Admin"), Integer.parseInt(_e.getChildText("TcpPort")), Integer.parseInt(_e.getChildText("UdpPort")));
         b.setIpFromString(_e.getChildText("Ip"));
-        
         return b;
     }
     

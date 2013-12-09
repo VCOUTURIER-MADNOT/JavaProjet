@@ -17,4 +17,10 @@ and open the template in the editor.
     <Nom>Valentin</Nom>
     <UserLevel>2</UserLevel>
   </Utilisateur>
+  <Utilisateur>
+    <Login>Maxence</Login>
+    <Password>lel</Password>
+    <Nom>Maxence ADNOT</Nom>
+    <UserLevel>2</UserLevel>
+  </Utilisateur>
 </Utilisateurs>

@@ -25,7 +25,8 @@ public class ClientRMI {
             Registry registry = LocateRegistry.getRegistry(12345);
             GU = (IGestionnaireUtilisateurs) registry.lookup("/JavaRMI/GestionnaireUtilisateurs");
             GB = (IGestionnaireBoutiques) registry.lookup("/JavaRMI/GestionnaireBoutiques");
-            GB.creerBoutique("Valcou'Shops", "Valcou", 65432, 65433);
+            GU.inscrire("Maxence", "lel", "Maxence ADNOT");
+            GB.creerBoutique("Maxence's Shop", "Maxence", 65432, 65433);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -9,7 +9,7 @@ package JavaRMI.Gestionnaires;
 import JavaRMI.Classes.Boutique;
 import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
-import JavaRMI.NotifyLists.BoutiqueNotifyList;
+import Util.NotifyLists.BoutiqueNotifyList;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
