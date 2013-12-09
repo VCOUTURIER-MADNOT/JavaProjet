@@ -21,16 +21,38 @@ import java.util.logging.Logger;
 public class Boutique {
 
     private String          nom;
+    private int             tcpPort;
+    private int             udpPort;
     private Inet4Address    ip;
-    private int             port;
     private Utilisateur     admin;
     
-    public Boutique(String _nom, String _loginAdmin)
+    public Boutique(String _nom, String _loginAdmin, int _tcpPort, int _udpPort)
     {
-        this.nom = _nom;
-        this.ip = null;
-        this.port = 0;
-        //this.admin = GestionnaireUtilisateurs.getUtilisateur(_loginAdmin);
+        try {
+            this.nom = _nom;
+            this.ip = (Inet4Address) Inet4Address.getAllByName("0.0.0.0")[0];
+            this.admin = GestionnaireUtilisateurs.getUtilisateur(_loginAdmin);
+            this.tcpPort = _tcpPort;
+            this.udpPort = _udpPort;
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Boutique.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public int getTcpPort() {
+        return tcpPort;
+    }
+
+    public void setTcpPort(int tcpPort) {
+        this.tcpPort = tcpPort;
+    }
+
+    public int getUdpPort() {
+        return udpPort;
+    }
+
+    public void setUdpPort(int udpPort) {
+        this.udpPort = udpPort;
     }
 
     public Inet4Address getIp() {
@@ -41,14 +63,6 @@ public class Boutique {
         this.ip = ip;
     }
 
-    public int getPort() {
-        return this.port;
-    }
-
-    public void setPort(int _port) {
-        this.port = port;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -57,17 +71,16 @@ public class Boutique {
         return admin;
     }
     
-    public String ipPortToString()
+    public String ipToString()
     {
-        return this.ip.getHostAddress() + ":" + this.port;
+        return this.ip.getHostAddress();
     }
     
-    public void setIpPortFromString(String _ipPort)
+    public void setIpFromString(String _ipPort)
     {
         String[] split = _ipPort.split(":");
         try {
             this.ip = (Inet4Address) InetAddress.getAllByName(split[0])[0];
-            this.port = Integer.parseInt(split[1]);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Boutique.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +88,7 @@ public class Boutique {
 
     @Override
     public String toString() {
-        return "Boutique{" + "nom=" + nom + ", ip=" + ip.getHostAddress() + ", port=" + port + ", admin=" + admin + '}';
+        return "Boutique{" + "nom=" + nom + ", ip=" + ip.getHostAddress() + ", admin=" + admin + '}';
     }
     
     @Override
@@ -87,21 +100,9 @@ public class Boutique {
             return false;
         }
         final Boutique other = (Boutique) obj;
-        if (!Objects.equals(this.ip, other.ip)) {
-            return false;
-        }
-        if (this.port != other.port) {
+        if (!Objects.equals(this.admin, other.admin)) {
             return false;
         }
         return true;
-    }
-    
-    public static void main(String[] args)
-    {
-        Boutique b = new Boutique("Essai", "Coutcout");
-        b.setIpPortFromString("192.168.0.1:99");
-        
-        System.out.println(b);
-        System.out.println(b.ipPortToString());
     }
 }

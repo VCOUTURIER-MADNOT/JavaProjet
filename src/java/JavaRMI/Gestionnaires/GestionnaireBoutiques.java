@@ -7,6 +7,7 @@
 package JavaRMI.Gestionnaires;
 
 import JavaRMI.Classes.Boutique;
+import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.NotifyLists.BoutiqueNotifyList;
 import java.rmi.RemoteException;
@@ -27,11 +28,11 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     }
     
     @Override
-    public Boutique getBoutique(String _ipPort) throws RemoteException 
+    public Boutique getBoutique(String _loginBoutiqueAdmin) throws RemoteException 
     {
         for(Boutique b : boutiques)
         {
-            if(b.ipPortToString().equals(_ipPort))
+            if(b.getAdmin().getLogin().equals(_loginBoutiqueAdmin))
             {
                 return b;
             }
@@ -46,17 +47,21 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     }
 
     @Override
-    public void creerBoutique(String _nom, String _loginAdmin) throws RemoteException {
-        Boutique b = new Boutique(_nom, _loginAdmin);
+    public void creerBoutique(String _nom, String _loginAdmin, int _tcpPort, int _udpPort) throws RemoteException {
+        Boutique b = new Boutique(_nom, _loginAdmin, _tcpPort, _udpPort);
         boutiques.add(b);
     }
 
     @Override
-    public void supprimerBoutique(String _ipPort) throws RemoteException {
+    public void supprimerBoutique(String _loginAdminBoutique, String _loginAdmin) throws RemoteException {
         Boutique b = null;
-        if((b = getBoutique(_ipPort)) != null)
+        Utilisateur u = GestionnaireUtilisateurs.getUtilisateur(_loginAdmin);
+        if((b = getBoutique(_loginAdminBoutique)) != null)
         {
-            boutiques.remove(b);
+            if(b.getAdmin().equals(u) || u.isAdmin())
+            {
+                boutiques.remove(b);
+            }
         }
     }
     

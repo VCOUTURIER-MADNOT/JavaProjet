@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<Utilisateurs>
+  <Utilisateur>
+    <Login>admin</Login>
+    <Password>adminpwd</Password>
+    <Nom>Administrateur</Nom>
+    <UserLevel>3</UserLevel>
+  </Utilisateur>
+  <Utilisateur>
+    <Login>Valcou</Login>
+    <Password>Valcoupwd</Password>
+    <Nom>Valentin</Nom>
+    <UserLevel>2</UserLevel>
+  </Utilisateur>
+</Utilisateurs>

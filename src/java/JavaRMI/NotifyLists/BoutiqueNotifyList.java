@@ -24,7 +24,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
 
     public BoutiqueNotifyList(){
         SAXBuilder sxb = new SAXBuilder();
-        this.xmlUrl = "Boutiques.xml";
+        this.xmlUrl = "src/java/Boutiques.xml";
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));
@@ -56,7 +56,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
         if(_o instanceof Boutique)
         {
             Boutique b = (Boutique) _o;
-            Element e = this.getElementFromId(b.ipPortToString());
+            Element e = this.getElementFromId(b.getAdmin().getLogin());
             this.racine.removeContent(e);
         }
     }
@@ -68,7 +68,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
         while(iterator.hasNext())
         {
             Element eBoutique = iterator.next();
-            if ((eBoutique.getChildText("Ip")+':'+eBoutique.getChildText("Port")).equals(_id))
+            if ((eBoutique.getChildText("Admin")).equals(_id))
             {	
                 return eBoutique;
             }
@@ -91,15 +91,19 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
             Element eIp = new Element("Ip");
             eIp.setText(b.getIp().getHostAddress());
             
-            Element ePort = new Element("Port");
-            ePort.setText(String.valueOf(b.getPort()));
+            Element eTcpPort = new Element("TcpPort");
+            eTcpPort.setText(String.valueOf(b.getTcpPort()));
+            
+            Element eUdpPort = new Element("UdpPort");
+            eUdpPort.setText(String.valueOf(b.getUdpPort()));
             
             Element eAdmin = new Element ("Admin");
             eAdmin.setText(b.getAdmin().getLogin());
         
             eBoutique.addContent(eNom);
             eBoutique.addContent(eIp);
-            eBoutique.addContent(ePort);
+            eBoutique.addContent(eTcpPort);
+            eBoutique.addContent(eUdpPort);
             eBoutique.addContent(eAdmin);
         }
         
@@ -109,8 +113,8 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
 
     @Override
     protected Object getObjectFromElement(Element _e) {
-        Boutique b = new Boutique(_e.getChildText("Nom"), _e.getChildText("Admin"));
-        b.setIpPortFromString(_e.getChildText("Port")+":"+_e.getChildText("Ip"));
+        Boutique b = new Boutique(_e.getChildText("Nom"), _e.getChildText("Admin"), Integer.parseInt(_e.getChildText("TcpPort")), Integer.parseInt(_e.getChildText("UdpPort")));
+        b.setIpFromString(_e.getChildText("Ip"));
         
         return b;
     }

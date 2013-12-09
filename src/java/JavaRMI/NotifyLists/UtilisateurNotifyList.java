@@ -21,7 +21,7 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
 
     public UtilisateurNotifyList() {
         SAXBuilder sxb = new SAXBuilder();
-        this.xmlUrl = "Utilisateurs.xml";
+        this.xmlUrl = "src/java/Utilisateurs.xml";
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));
