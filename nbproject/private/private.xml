@@ -5,22 +5,6 @@
         <group>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Server/UDPRequestHandler.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Server/TCPRequestHandler.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/UtilisateurNotifyList.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Classes/Utilisateur.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/StringUtil.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/ServeurRMI.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Gestionnaires/GestionnaireUtilisateurs.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Server/ServerCommande.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Server/ServerProduit.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/ProduitNotifyList.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Classes/Produit.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Interfaces/IGestionnaireBoutiques.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/NotifyList.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Classes/Boutique.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Interfaces/IGestionnaireUtilisateurs.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/BoutiqueNotifyList.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Gestionnaires/Gestionnaire.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Produits.xml</file>
         </group>
     </open-files>
 </project-private>

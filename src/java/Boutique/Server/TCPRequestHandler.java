@@ -49,7 +49,7 @@ public class TCPRequestHandler extends Thread {
                 case "afficherProduits":
                     d = afficherProduits();
                     break;
-            }         
+            }
             
             PrintWriter pw = new PrintWriter(clientSocket.getOutputStream());
             pw.print(new XMLOutputter().outputString(d));
