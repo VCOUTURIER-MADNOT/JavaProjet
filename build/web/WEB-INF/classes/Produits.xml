@@ -7,5 +7,9 @@ and open the template in the editor.
 
 
 <Produits>
-    
+    <Produit>
+        <Nom>objet</Nom>
+        <Description>objetDesc</Description>
+        <Prix>90</Prix>
+    </Produit>
 </Produits>

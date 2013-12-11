@@ -1,9 +1,10 @@
 package JavaRMI.Classes;
 
+import java.io.Serializable;
 import java.util.Objects;
 import org.jdom2.Element;
 
-public class Utilisateur{
+public class Utilisateur implements Serializable{
 
     private String  login;
     private String  password;

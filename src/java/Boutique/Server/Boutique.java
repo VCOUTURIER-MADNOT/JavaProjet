@@ -18,8 +18,8 @@ import java.net.URL;
  */
 public class Boutique {
     private InetAddress ip;
-    private ServerProduit tcpServer;
-    private ServerCommande udpServer;
+    private Thread tcpServer;
+    private Thread udpServer;
     private String nom;
     private String loginAdmin;
     
@@ -30,11 +30,11 @@ public class Boutique {
         try {
             URL whatismyip = new URL("http://checkip.amazonaws.com/");
             BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
-            String ip = in.readLine(); 
-            
+            //String ip = in.readLine(); 
+            String ip = "0.0.0.0"; // Le server écoute les port de sa carte réseau, donc localhost ?
             this.ip = InetAddress.getByName(ip);
-            this.tcpServer = new ServerProduit(this.ip, 65432);
-            this.udpServer = new ServerCommande(this.ip,65433);
+            this.tcpServer = new Thread(new ServerProduit(this.ip, 65432));
+            this.udpServer = new Thread(new ServerCommande(this.ip,65433));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -67,6 +67,7 @@ public class Boutique {
     {
         Boutique boutique = new Boutique("Boutique de Valcou", "Valcou");
         boutique.start(); 
+        System.out.println("Boutique démarée.");
     }
     
     

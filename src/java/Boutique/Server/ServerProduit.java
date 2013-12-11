@@ -21,7 +21,7 @@ public class ServerProduit extends Thread {
                     try
                     {
                         Socket client = socketServ.accept();
-                        TCPRequestHandler tcpClient = new TCPRequestHandler(client);
+                        Thread tcpClient = new Thread(new TCPRequestHandler(client));
                         tcpClient.start();
                     }
                     catch(Exception ex)

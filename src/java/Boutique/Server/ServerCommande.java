@@ -25,7 +25,7 @@ public class ServerCommande extends Thread {
 			
 			try {
 				ds.receive(dp);
-                                UDPRequestHandler udpClient = new UDPRequestHandler();
+                                UDPRequestHandler udpClient = new UDPRequestHandler(dp);
                                 udpClient.start();
 			} catch (IOException e) {
 				e.printStackTrace();

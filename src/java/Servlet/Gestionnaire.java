@@ -9,10 +9,11 @@ package Servlet;
 import Boutique.Classes.Produit;
 import JavaRMI.Classes.Boutique;
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
-import Servlet.Interfaces.IGestionnaireBoutiques;
-import Servlet.Interfaces.IGestionnaireUtilisateurs;
+import JavaRMI.Interfaces.IGestionnaireBoutiques;
+import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -35,8 +36,8 @@ public class Gestionnaire {
     {
         try {
             Registry registry = LocateRegistry.getRegistry(12345);
-            GU = (IGestionnaireUtilisateurs) registry.lookup("/JavaRMI/GestionnaireUtilisateurs");
-            GB = (IGestionnaireBoutiques) registry.lookup("/JavaRMI/GestionnaireBoutiques");
+            GU = (IGestionnaireUtilisateurs) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireUtilisateurs");
+            GB = (IGestionnaireBoutiques) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireBoutiques");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -111,9 +112,12 @@ public class Gestionnaire {
             
             Document d = new Document();
             Element e = new Element("Request");
+            d.setRootElement(e);
             e.setAttribute("action", "afficherProduits");
             PrintWriter pw = new PrintWriter(so.getOutputStream());
             pw.print(new XMLOutputter().outputString(d));
+            pw.flush();
+            System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
             
             SAXBuilder sb = new SAXBuilder();
             d = sb.build(so.getInputStream());
@@ -127,6 +131,7 @@ public class Gestionnaire {
             }
             return null;
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         

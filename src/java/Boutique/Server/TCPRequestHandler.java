@@ -3,6 +3,7 @@ package Boutique.Server;
 import Boutique.Classes.Produit;
 import Util.NotifyLists.ProduitNotifyList;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import org.jdom2.Document;
@@ -33,7 +34,8 @@ public class TCPRequestHandler extends Thread {
 
         try
         {
-            this.document = sxb.build(clientSocket.getInputStream());
+            InputStream is = clientSocket.getInputStream();
+            this.document = sxb.build(is);
             this.racine = this.document.getRootElement();
         
            Document d = new Document();
@@ -53,6 +55,7 @@ public class TCPRequestHandler extends Thread {
             
             PrintWriter pw = new PrintWriter(clientSocket.getOutputStream());
             pw.print(new XMLOutputter().outputString(d));
+            pw.flush();
         }
         catch(IOException | JDOMException ex)
         {

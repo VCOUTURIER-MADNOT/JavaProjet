@@ -2,8 +2,8 @@ package JavaRMI;
 
 import JavaRMI.Gestionnaires.GestionnaireBoutiques;
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
-import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -29,14 +29,14 @@ public class ServeurRMI {
             registry = LocateRegistry.createRegistry(12345);
             GestionnaireBoutiques GB = new GestionnaireBoutiques();
             GestionnaireUtilisateurs GU = new GestionnaireUtilisateurs();
-            registry.bind("/JavaRMI/GestionnaireBoutiques", GB);
-            registry.bind("/JavaRMI/GestionnaireUtilisateurs", GU);
+            registry.bind("rmi://127.0.0.1:12345/JavaRMI/GestionnaireBoutiques", GB);
+            registry.bind("rmi://127.0.0.1:12345/JavaRMI/GestionnaireUtilisateurs", GU);
+            System.out.println("Serveur démarré ! ");
 	} catch (RemoteException e) {
             e.printStackTrace();
 	}   catch (AlreadyBoundException ex) {
             Logger.getLogger(ServeurRMI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Serveur d�marr� !");
     }
  
 }

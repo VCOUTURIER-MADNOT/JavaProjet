@@ -1,12 +1,13 @@
 package JavaRMI.Classes;
 
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
+import java.io.Serializable;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
-public class Boutique {
+public class Boutique implements Serializable{
 
     private String          nom;
     private int             tcpPort;
