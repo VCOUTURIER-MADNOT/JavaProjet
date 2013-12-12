@@ -1,6 +1,7 @@
 package Boutique.Server;
 
 import Boutique.Classes.Commande;
+import Boutique.Classes.Produit;
 import Util.NotifyLists.CommandeNotifyList;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -72,8 +73,16 @@ public class UDPRequestHandler extends Thread {
         Element response = new Element("Response");
         d.setRootElement(response);
         
+        Commande c = (Commande)this.listeCommande.getObjectFromElement(this.racine.getChild("Commande"));
+        
+        Element elementEquivoque =  this.listeCommande.getElementFromId(String.valueOf(c.getId()));
+        if ( elementEquivoque != null)
+        {
+            this.listeCommande.remove((Commande)this.listeCommande.getObjectFromElement(elementEquivoque));
+        }
+        this.listeCommande.add(c, true);
  
-        msg.addContent("Produit ajoute");
+        msg.addContent("Commande ajoute");
         response.addContent(msg);
         return d;
     }
@@ -85,7 +94,15 @@ public class UDPRequestHandler extends Thread {
         Element response = new Element("Response");
         d.setRootElement(response);
         
-
+        Element element =  this.listeCommande.getElementFromId(this.racine.getChildText("IdCommande"));
+        if ( element != null)
+        {
+            this.listeCommande.remove((Produit)this.listeCommande.getObjectFromElement(element));
+            
+            msg.addContent("Produit supprime");
+        }
+        else
+            msg.addContent("Produit inconnu");
         
         response.addContent(msg);
         return d;
@@ -99,7 +116,17 @@ public class UDPRequestHandler extends Thread {
         Element response = new Element("Response");
         d.setRootElement(response);
         
-
+        Element element =  this.listeCommande.getElementFromId(this.racine.getChildText("IdCommande"));
+        if ( element != null)
+        {
+            Commande c = (Commande)this.listeCommande.getObjectFromElement(element);
+            this.listeCommande.remove(c);
+            c.setValide(this.racine.getChildText("Valide") == "oui");
+            this.listeCommande.add(c, true);
+            msg.addContent("Commande modifiee");
+        }
+        else 
+            msg.addContent("Commande introuvable");
         
         response.addContent(msg);
         return d;

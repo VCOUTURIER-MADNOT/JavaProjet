@@ -75,6 +75,6 @@ public class CommandeNotifyList extends NotifyList<Commande> {
     
     @Override
     public Object getObjectFromElement(Element _e) {
-        return Commande.getCommandeFromElement(_e);
+        return Commande.getObjectFromElement(_e);
     }
 }

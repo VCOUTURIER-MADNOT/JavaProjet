@@ -8,12 +8,14 @@ public class Commande {
     
     private int          id;
     private String       login;
+    private boolean      valide;
     private ArrayList<Produit> listeProduit;
     
-    public Commande(int _id, String _login, ArrayList<Produit> _listeProduit)
+    public Commande(int _id, String _login, boolean _valide, ArrayList<Produit> _listeProduit)
     {
         this.id = _id;
         this.login = _login;
+        this.valide = _valide;
         this.listeProduit = _listeProduit;
     }
 
@@ -36,7 +38,17 @@ public class Commande {
     {
         this.login = _login;
     }
+    
+    public boolean getValide()
+    {
+        return this.valide;
+    }
 
+    public void setValide(boolean _valide)
+    {
+        this.valide = _valide;
+    }
+    
     public ArrayList<Produit> getListeProduit()
     {
         return (ArrayList<Produit>)this.listeProduit.clone();
@@ -49,7 +61,7 @@ public class Commande {
             
     @Override
     public String toString() {
-        return "Commande{" + "id=" + id + ", login=" + login + ", " + listeProduit.toString() + '}';
+        return "Commande{" + "id=" + id + ", login=" + login + ", valide =" + (valide ? "oui" : "non") + ", " + listeProduit.toString() + '}';
     }
 
     @Override
@@ -72,9 +84,9 @@ public class Commande {
         Element listeProduit = _e.getChild("ListeProduit");
         for (Element eProduit : listeProduit.getChildren("Produit"))
         {
-            p.add(Produit.getObjectFromElement(eProduit));
+            p.add((Produit)Produit.getObjectFromElement(eProduit));
         }
-        return new Commande(Integer.parseInt(_e.getChildText("Id")), _e.getChildText("Login"), p );
+        return new Commande(Integer.parseInt(_e.getChildText("Id")), _e.getChildText("Login"), _e.getChildText("Valide") == "oui" , p );
     }
     
     public static Element getElementFromObject(Object _o) {
@@ -90,6 +102,9 @@ public class Commande {
             Element eLogin = new Element("Login");
             eLogin.setText(p.getLogin());
             
+            Element eValide = new Element("Valide");
+            eValide.setText(p.getValide()? "oui" : "non");
+            
             Element eListeProduit = new Element("ListeProduit");
             for(Produit eProduit : p.getListeProduit())
             {
@@ -98,6 +113,7 @@ public class Commande {
         
             eCommande.addContent(eId);
             eCommande.addContent(eLogin);
+            eCommande.addContent(eValide);
             eCommande.addContent(eListeProduit);
         }
         
