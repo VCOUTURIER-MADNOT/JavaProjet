@@ -115,8 +115,10 @@ public class Gestionnaire {
             d.setRootElement(e);
             e.setAttribute("action", "afficherProduits");
             PrintWriter pw = new PrintWriter(so.getOutputStream());
-            pw.print(new XMLOutputter().outputString(d));
+            pw.println(new XMLOutputter().outputString(d));
+            pw.println("\n");
             pw.flush();
+            so.shutdownOutput();
             System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
             
             SAXBuilder sb = new SAXBuilder();
