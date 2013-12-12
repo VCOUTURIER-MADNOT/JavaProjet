@@ -11,14 +11,14 @@ import org.jdom2.input.SAXBuilder;
 
 public class ProduitNotifyList extends NotifyList<Produit>{
 
-    public void ProduitNotifyList() {
+    public ProduitNotifyList() {
         SAXBuilder sxb = new SAXBuilder();
         this.xmlUrl = "src/java/Produits.xml";
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));
             this.racine = this.document.getRootElement();
-        
+            
             for (Element eProduit : this.racine.getChildren("Produit"))
             {
                 this.add((Produit) this.getObjectFromElement(eProduit), false);
@@ -68,31 +68,11 @@ public class ProduitNotifyList extends NotifyList<Produit>{
 
     @Override
     public Element getElementFromObject(Object _o) {
-        Element eProduit = null;
-        if(_o instanceof Produit)
-        {
-            Produit p = (Produit) _o;
-            eProduit = new Element("Produit");
-            
-            Element eNom = new Element("Nom");
-            eNom.setText(p.getNom());
-            
-            Element eDescription = new Element("Description");
-            eDescription.setText(p.getDescription());
-            
-            Element ePrix = new Element("Prix");
-            ePrix.setText(String.valueOf(p.getPrix()));
-        
-            eProduit.addContent(eNom);
-            eProduit.addContent(eDescription);
-            eProduit.addContent(ePrix);
-        }
-        
-        return eProduit;  
+        return Produit.getElementFromObject(_o);
     }
 
     @Override
     public Object getObjectFromElement(Element _e) {
-        return new Produit(_e.getChildText("Nom"), _e.getChildText("Description"), Float.parseFloat(_e.getChildText("Prix")));
+        return Produit.getObjectFromElement(_e);
     }
 }

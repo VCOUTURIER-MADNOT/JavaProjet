@@ -3,11 +3,12 @@ package Boutique.Server;
 import Boutique.Classes.Produit;
 import Util.NotifyLists.ProduitNotifyList;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import javax.xml.stream.XMLOutputFactory;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -30,18 +31,16 @@ public class TCPRequestHandler extends Thread {
     
     public void run()
     {
-
-        SAXBuilder sxb = new SAXBuilder();
-        
-
+    
         try
         {
-            InputStream is = clientSocket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            this.document = sxb.build(reader);
+            SAXBuilder builder = new SAXBuilder();
+
+            this.document = (Document) builder.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(clientSocket.getInputStream()).toString().getBytes()));
+            
             this.racine = this.document.getRootElement();
         
-           Document d = new Document();
+            Document d = new Document();
             
             switch(this.racine.getAttributeValue("action"))
             {
@@ -80,7 +79,7 @@ public class TCPRequestHandler extends Thread {
         Element elementEquivoque =  this.listeProduit.getElementFromId(p.getNom());
         if ( elementEquivoque != null)
         {
-            this.listeProduit.removeFromXML((Produit)this.listeProduit.getObjectFromElement(elementEquivoque));
+            this.listeProduit.remove((Produit)this.listeProduit.getObjectFromElement(elementEquivoque));
         }
         this.listeProduit.add(p, true);
         
@@ -99,7 +98,7 @@ public class TCPRequestHandler extends Thread {
         Element element =  this.listeProduit.getElementFromId(this.racine.getChildText("NomProduit"));
         if ( element != null)
         {
-            this.listeProduit.removeFromXML((Produit)this.listeProduit.getObjectFromElement(element));
+            this.listeProduit.remove((Produit)this.listeProduit.getObjectFromElement(element));
             
             msg.addContent("Produit supprime");
         }

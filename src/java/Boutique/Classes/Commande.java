@@ -63,12 +63,6 @@ public class Commande {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        if (!Objects.equals(this.listeProduit, other.listeProduit)) {
-            return false;
-        }
         return true;
     }
 

@@ -11,6 +11,8 @@ import JavaRMI.Classes.Boutique;
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
+import Util.NotifyLists.ProduitNotifyList;
+import java.io.ByteArrayInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.rmi.RMISecurityManager;
@@ -107,6 +109,9 @@ public class Gestionnaire {
     public ArrayList<Produit> getProduits(String _loginAdminBoutique)
     {
         try {
+            
+            ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+            
             Boutique b = GB.getBoutique(_loginAdminBoutique);
             Socket so = new Socket(b.getIp(), b.getTcpPort());
             
@@ -119,23 +124,90 @@ public class Gestionnaire {
             pw.println("\n");
             pw.flush();
             so.shutdownOutput();
-            System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
+            //System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
             
             SAXBuilder sb = new SAXBuilder();
-            d = sb.build(so.getInputStream());
+            d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
+            
+            
             Element rootElement = d.getRootElement();
-            if(rootElement.getText().equals("Response"))
+            if(rootElement.getName().equals("Response"))
             {
                 for(Element el : rootElement.getChildren("Produit"))
                 {
                     System.out.println(el.getChildText("Nom"));
+                    listeProduits.add(new Produit(el.getChildText("Nom"), el.getChildText("Description"), Float.parseFloat(el.getChildText("Prix"))));
                 }
             }
-            return null;
+            so.close();
+            return listeProduits;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-        
     }
+    
+    public void ajoutProduit(String _loginAdminBoutique, Produit _p)
+    {
+        try {
+            
+            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Socket so = new Socket(b.getIp(), b.getTcpPort());
+            
+            Document d = new Document();
+            Element e = new Element("Request");
+            d.setRootElement(e);
+            e.setAttribute("action", "ajoutProduit");
+            e.addContent(Produit.getElementFromObject(_p));
+            PrintWriter pw = new PrintWriter(so.getOutputStream());
+            pw.println(new XMLOutputter().outputString(d));
+            pw.println("\n");
+            pw.flush();
+            so.shutdownOutput();
+            //System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
+            
+            SAXBuilder sb = new SAXBuilder();
+            d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
+            
+            System.out.println(new XMLOutputter().outputString(d));
+            
+            so.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void supprimerProduit(String _loginAdminBoutique, String _nomProduit)
+    {
+        try {
+            
+            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Socket so = new Socket(b.getIp(), b.getTcpPort());
+            
+            Document d = new Document();
+            Element e = new Element("Request");
+            d.setRootElement(e);
+            e.setAttribute("action", "supprimerProduit");
+            Element nomProduit = new Element("NomProduit");
+            nomProduit.setText(_nomProduit);
+            e.addContent(nomProduit);
+            PrintWriter pw = new PrintWriter(so.getOutputStream());
+            pw.println(new XMLOutputter().outputString(d));
+            pw.println("\n");
+            pw.flush();
+            so.shutdownOutput();
+            //System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
+            
+            SAXBuilder sb = new SAXBuilder();
+            d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
+            
+            System.out.println(new XMLOutputter().outputString(d));
+            
+            so.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
 }

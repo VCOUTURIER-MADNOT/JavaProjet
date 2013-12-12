@@ -1,5 +1,6 @@
 package Client;
 
+import Boutique.Classes.Produit;
 import Servlet.Gestionnaire;
  
 /**
@@ -16,6 +17,8 @@ public class ClientRMI {
     public static void main(String[] args){
     	Gestionnaire g = new Gestionnaire();
         g.getProduits("Valcou");
+        g.ajoutProduit("Valcou", new Produit("LEL", "Valentin", 0.35f));
+        //g.supprimerProduit("Valcou", "LEL");
     }
  
 }

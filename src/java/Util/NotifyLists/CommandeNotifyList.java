@@ -13,7 +13,7 @@ import org.jdom2.input.SAXBuilder;
 
 public class CommandeNotifyList extends NotifyList<Commande> {
     
-    public void CommandeNotifyList() {
+    public CommandeNotifyList() {
         SAXBuilder sxb = new SAXBuilder();
         this.xmlUrl = "src/java/Commandes.xml";
         try

@@ -1,7 +1,11 @@
 package Util;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import org.jdom2.input.SAXBuilder;
 
 public class StringUtil {
     
@@ -55,4 +59,23 @@ public class StringUtil {
     	return null;
     }
 	
+    public static StringBuilder XMLInputStreamToStr(InputStream _is)
+    {
+        StringBuilder sb = new StringBuilder();;
+        try{
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(_is));
+            String inline = "";
+            while ((inline = inputReader.readLine()) != null) {
+              sb.append(inline);
+            }
+            
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return sb;
+    }
+   
 }

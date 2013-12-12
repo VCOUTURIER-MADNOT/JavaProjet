@@ -1,6 +1,7 @@
 package Boutique.Classes;
 
 import java.util.Objects;
+import org.jdom2.Element;
 
 public class Produit {
     private String          nom;
@@ -61,12 +62,34 @@ public class Produit {
         if (!Objects.equals(this.nom, other.nom)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.prix) != Float.floatToIntBits(other.prix)) {
-            return false;
-        }
         return true;
     }    
+    
+    public static Element getElementFromObject(Object _o) {
+        Element eProduit = null;
+        if(_o instanceof Produit)
+        {
+            Produit p = (Produit) _o;
+            eProduit = new Element("Produit");
+            
+            Element eNom = new Element("Nom");
+            eNom.setText(p.getNom());
+            
+            Element eDescription = new Element("Description");
+            eDescription.setText(p.getDescription());
+            
+            Element ePrix = new Element("Prix");
+            ePrix.setText(String.valueOf(p.getPrix()));
+        
+            eProduit.addContent(eNom);
+            eProduit.addContent(eDescription);
+            eProduit.addContent(ePrix);
+        }
+        
+        return eProduit;  
+    }
+
+    public static Object getObjectFromElement(Element _e) {
+        return new Produit(_e.getChildText("Nom"), _e.getChildText("Description"), Float.parseFloat(_e.getChildText("Prix")));
+    }
 }
