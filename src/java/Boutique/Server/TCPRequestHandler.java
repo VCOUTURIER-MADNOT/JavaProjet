@@ -53,6 +53,10 @@ public class TCPRequestHandler extends Thread {
                 case "afficherProduits":
                     d = afficherProduits();
                     break;
+                case "getProduit":
+                    Element e = d.getRootElement();
+                    d = this.getProduitElement(e.getChildText("NomProduit"));
+                    break;
             }
             
             PrintWriter pw = new PrintWriter(clientSocket.getOutputStream());
@@ -79,7 +83,7 @@ public class TCPRequestHandler extends Thread {
         Element elementEquivoque =  this.listeProduit.getElementFromId(p.getNom());
         if ( elementEquivoque != null)
         {
-            this.listeProduit.remove((Produit)this.listeProduit.getObjectFromElement(elementEquivoque));
+            this.listeProduit.remove((Produit)Produit.getObjectFromElement(elementEquivoque));
         }
         this.listeProduit.add(p, true);
         
@@ -98,7 +102,7 @@ public class TCPRequestHandler extends Thread {
         Element element =  this.listeProduit.getElementFromId(this.racine.getChildText("NomProduit"));
         if ( element != null)
         {
-            this.listeProduit.remove((Produit)this.listeProduit.getObjectFromElement(element));
+            this.listeProduit.remove((Produit)Produit.getObjectFromElement(element));
             
             msg.addContent("Produit supprime");
         }
@@ -117,9 +121,34 @@ public class TCPRequestHandler extends Thread {
         
         for (Produit p: this.listeProduit)
         {
-            response.addContent(this.listeProduit.getElementFromObject(p));
+            response.addContent(Produit.getElementFromObject(p));
         }
         
         return d;
+    }
+    
+    public Document getProduitElement(String _name)
+    {
+        Document d = new Document();
+        Element response = new Element("Response");
+        d.setRootElement(response);
+        
+        response.addContent(Produit.getElementFromObject(this.getProduit(_name)));
+        
+        return d;
+    }
+    
+    private Produit getProduit(String _name)
+    {
+        Produit p = null;
+        for(Produit pr : this.listeProduit)
+        {
+            if(pr.getNom().equals(_name))
+            {
+                p = pr;
+            }
+        }
+        
+        return p;
     }
 }

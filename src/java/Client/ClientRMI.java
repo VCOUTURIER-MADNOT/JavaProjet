@@ -16,9 +16,13 @@ public class ClientRMI {
      */
     public static void main(String[] args){
     	Gestionnaire g = new Gestionnaire();
+<<<<<<< HEAD
         g.getProduits("Valcou");
         g.ajoutProduit("Valcou", new Produit("LEL", "Valentin", 0.50f));
         g.supprimerProduit("Valcou", "LEL");
+=======
+        g.supprimerProduit("Valcou", "objet");
+>>>>>>> Commit commit
     }
  
 }

@@ -84,7 +84,11 @@ public class Commande {
         Element listeProduit = _e.getChild("ListeProduit");
         for (Element eProduit : listeProduit.getChildren("Produit"))
         {
+<<<<<<< HEAD
             p.add((Produit)Produit.getObjectFromElement(eProduit));
+=======
+            p.add((Produit) Produit.getObjectFromElement(eProduit));
+>>>>>>> Commit commit
         }
         return new Commande(Integer.parseInt(_e.getChildText("Id")), _e.getChildText("Login"), _e.getChildText("Valide") == "oui" , p );
     }

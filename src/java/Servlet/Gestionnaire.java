@@ -20,6 +20,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -209,5 +211,38 @@ public class Gestionnaire {
         }
     }
     
+    public void ajouterCommande(ArrayList<String> _nomProduits, String _loginAdminBoutique)
+    {
+        try {
+            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Socket so = new Socket(b.getIp(), b.getTcpPort());
+            
+            Document d = new Document();
+            Element e = new Element("Request");
+            d.setRootElement(e);
+            e.setAttribute("action", "ajouterCommande");
+            for(String nomProduit : _nomProduits)
+            {
+                e.addContent(Produit.getElementFromObject(this.getProduit(nomProduit, _loginAdminBoutique)));
+            }
+            //eid
+            //elogin
+            //java.util.UUID.randomUUID();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
+    private Produit getProduit(String _nomProduit, String _nomBoutique)
+    {
+        for(Produit p : this.getProduits(_nomBoutique))
+        {
+            if(p.getNom().equals(_nomProduit))
+            {
+                return p;
+            }
+        }
+        
+        return null;
+    }
 }
