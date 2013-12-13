@@ -6,12 +6,12 @@ import org.jdom2.Element;
 
 public class Commande {
     
-    private int          id;
+    private String          id;
     private String       login;
     private boolean      valide;
     private ArrayList<Produit> listeProduit;
     
-    public Commande(int _id, String _login, boolean _valide, ArrayList<Produit> _listeProduit)
+    public Commande(String _id, String _login, boolean _valide, ArrayList<Produit> _listeProduit)
     {
         this.id = _id;
         this.login = _login;
@@ -19,12 +19,12 @@ public class Commande {
         this.listeProduit = _listeProduit;
     }
 
-    public int getId()
+    public String getId()
     {
         return this.id;
     }
 
-    public void setId(int _id)
+    public void setId(String _id)
     {
         this.id = _id;
     }
@@ -73,7 +73,7 @@ public class Commande {
             return false;
         }
         final Commande other = (Commande) obj;
-        if (this.id != other.id) {
+        if (!this.id.equals(other.id)) {
             return false;
         }
         return true;
@@ -84,13 +84,9 @@ public class Commande {
         Element listeProduit = _e.getChild("ListeProduit");
         for (Element eProduit : listeProduit.getChildren("Produit"))
         {
-<<<<<<< HEAD
             p.add((Produit)Produit.getObjectFromElement(eProduit));
-=======
-            p.add((Produit) Produit.getObjectFromElement(eProduit));
->>>>>>> Commit commit
         }
-        return new Commande(Integer.parseInt(_e.getChildText("Id")), _e.getChildText("Login"), _e.getChildText("Valide") == "oui" , p );
+        return new Commande(_e.getChildText("Id"), _e.getChildText("Login"), _e.getChildText("Valide") == "oui" , p );
     }
     
     public static Element getElementFromObject(Object _o) {
@@ -101,7 +97,7 @@ public class Commande {
             eCommande = new Element("Commande");
             
             Element eId = new Element("Id");
-            eId.setText(Integer.toString(p.getId()));
+            eId.setText(p.getId());
             
             Element eLogin = new Element("Login");
             eLogin.setText(p.getLogin());
@@ -110,9 +106,11 @@ public class Commande {
             eValide.setText(p.getValide()? "oui" : "non");
             
             Element eListeProduit = new Element("ListeProduit");
-            for(Produit eProduit : p.getListeProduit())
+            for(Produit produit : p.getListeProduit())
             {
-                eListeProduit.addContent(Produit.getElementFromObject(p));
+                System.out.println(produit);
+                Element eProduit = Produit.getElementFromObject(produit);
+                eListeProduit.addContent(eProduit);
             }
         
             eCommande.addContent(eId);

@@ -4,4 +4,25 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<Produits />
+<Produits>
+  <Produit>
+    <Nom>LEL1</Nom>
+    <Description>Valentin</Description>
+    <Prix>0.5</Prix>
+  </Produit>
+  <Produit>
+    <Nom>LEL2</Nom>
+    <Description>Valentin</Description>
+    <Prix>0.5</Prix>
+  </Produit>
+  <Produit>
+    <Nom>LEL3</Nom>
+    <Description>Valentin</Description>
+    <Prix>0.5</Prix>
+  </Produit>
+  <Produit>
+    <Nom>LEL4</Nom>
+    <Description>Valentin</Description>
+    <Prix>0.5</Prix>
+  </Produit>
+</Produits>

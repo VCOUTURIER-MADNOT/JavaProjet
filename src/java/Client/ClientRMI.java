@@ -2,6 +2,7 @@ package Client;
 
 import Boutique.Classes.Produit;
 import Servlet.Gestionnaire;
+import java.util.ArrayList;
  
 /**
  * Client permettant d'interroger la personne sur le serveur distant.
@@ -16,13 +17,13 @@ public class ClientRMI {
      */
     public static void main(String[] args){
     	Gestionnaire g = new Gestionnaire();
-<<<<<<< HEAD
-        g.getProduits("Valcou");
-        g.ajoutProduit("Valcou", new Produit("LEL", "Valentin", 0.50f));
-        g.supprimerProduit("Valcou", "LEL");
-=======
-        g.supprimerProduit("Valcou", "objet");
->>>>>>> Commit commit
+        
+        ArrayList<String> listeProduits = new ArrayList<>();
+        listeProduits.add("LEL1");
+        listeProduits.add("LEL2");
+        
+        System.out.println(g.afficherCommandes("Valcou"));
     }
- 
+    
+    
 }

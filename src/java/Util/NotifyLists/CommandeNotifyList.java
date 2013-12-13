@@ -47,7 +47,7 @@ public class CommandeNotifyList extends NotifyList<Commande> {
         if(_o instanceof Commande)
         {
             Commande c = (Commande) _o;
-            Element e = this.getElementFromId(Integer.toString(c.getId()));
+            Element e = this.getElementFromId(c.getId());
             this.racine.removeContent(e);
         }
     }

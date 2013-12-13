@@ -4,11 +4,14 @@ import Boutique.Classes.Commande;
 import Boutique.Classes.Produit;
 import Util.NotifyLists.CommandeNotifyList;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
 
 public class UDPRequestHandler extends Thread {
     private 		Document 	document;
@@ -35,8 +38,8 @@ public class UDPRequestHandler extends Thread {
             recv = clientPacket.getData();
             
             String xml = Util.StringUtil.ByteArrayToXMLString(recv);
-            
-            this.document = sxb.build(xml);
+            System.out.println(xml);
+            this.document = sxb.build(new StringReader(xml));
             this.racine = this.document.getRootElement();
         
            Document d = new Document();
@@ -56,8 +59,12 @@ public class UDPRequestHandler extends Thread {
                     d = afficherCommandes();
                     break;
             }
+            String response = new XMLOutputter().outputString(d);
+            byte[] buffer = response.getBytes();
             
-            // Envoi
+            DatagramPacket dpOut = new DatagramPacket(buffer, buffer.length, clientPacket.getSocketAddress());
+            DatagramSocket dsOut = new DatagramSocket();
+            dsOut.send(dpOut);
         }
         catch(IOException | JDOMException ex)
         {
@@ -97,7 +104,7 @@ public class UDPRequestHandler extends Thread {
         Element element =  this.listeCommande.getElementFromId(this.racine.getChildText("IdCommande"));
         if ( element != null)
         {
-            this.listeCommande.remove((Produit)this.listeCommande.getObjectFromElement(element));
+            this.listeCommande.remove((Commande)this.listeCommande.getObjectFromElement(element));
             
             msg.addContent("Produit supprime");
         }
@@ -121,7 +128,7 @@ public class UDPRequestHandler extends Thread {
         {
             Commande c = (Commande)this.listeCommande.getObjectFromElement(element);
             this.listeCommande.remove(c);
-            c.setValide(this.racine.getChildText("Valide") == "oui");
+            c.setValide(this.racine.getChildText("Valide").equals("oui"));
             this.listeCommande.add(c, true);
             msg.addContent("Commande modifiee");
         }
