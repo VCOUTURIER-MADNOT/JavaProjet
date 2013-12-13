@@ -22,7 +22,7 @@ public class ClientRMI {
         listeProduits.add("LEL1");
         listeProduits.add("LEL2");
         
-        System.out.println(g.afficherCommandes("Valcou"));
+        System.out.println(g.supprimerCommande("fb14dab2-2084-4566-b9b2-2d3b79f4ee2c", "Valcou"));
     }
     
     

@@ -219,7 +219,7 @@ public class Gestionnaire {
     }
     
     // Seul un client enregistré devrait pouvoir ajouter une commande
-    public void ajouterCommande(ArrayList<String> _nomProduits, String _loginClient, String _loginAdminBoutique)
+    public String ajouterCommande(ArrayList<String> _nomProduits, String _loginClient, String _loginAdminBoutique)
     {
         try {
             Boutique b = GB.getBoutique(_loginAdminBoutique);
@@ -264,13 +264,22 @@ public class Gestionnaire {
                     
             ds.send(dp);
             System.out.println(xml + "envoyé");
+            
+            // Réception de la réponse
+            Document docIn = this.getDocumentFromResponse(ds);
+            if(docIn != null)
+            {
+                Element rootElement = docIn.getRootElement();
+                return rootElement.getChildText("Message");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return "Une erreur s'est produite";
     }
     
     // Seul l'admin de la boutique devrait pouvoir supprimer une commande
-    public void supprimerCommande(String _idCommande, String _loginAdminBoutique)
+    public String supprimerCommande(String _idCommande, String _loginAdminBoutique)
     {
         try {
             Boutique b = GB.getBoutique(_loginAdminBoutique);
@@ -297,13 +306,22 @@ public class Gestionnaire {
                     
             ds.send(dp);
             System.out.println(xml + "envoyé");
+            
+            // Réception de la réponse
+            Document docIn = this.getDocumentFromResponse(ds);
+            if(docIn != null)
+            {
+                Element rootElement = docIn.getRootElement();
+                return rootElement.getChildText("Message");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return "Une erreur s'est produite";
     }
     
     // Seul l'admin de la boutique devrait pouvoir valider une commande
-    public void validerCommande(String _idCommande, boolean valide, String _loginAdminBoutique)
+    public String validerCommande(String _idCommande, boolean valide, String _loginAdminBoutique)
     {
         try {
             Boutique b = GB.getBoutique(_loginAdminBoutique);
@@ -334,9 +352,19 @@ public class Gestionnaire {
                     
             ds.send(dp);
             System.out.println(xml + "envoyé");
+            
+            // Réception de la réponse
+            Document docIn = this.getDocumentFromResponse(ds);
+            if(docIn != null)
+            {
+                Element rootElement = docIn.getRootElement();
+                return rootElement.getChildText("Message");
+            }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return "Une erreur s'est produite";
     }
     
     // Seul l'admin de la boutique devrait pouvoir afficher les commandes
@@ -364,6 +392,7 @@ public class Gestionnaire {
             ds.send(dp);
             System.out.println(xml + "envoyé");
             
+            // Réception de la réponse
             Document docIn = this.getDocumentFromResponse(ds);
             if(docIn != null)
             {

@@ -106,10 +106,10 @@ public class UDPRequestHandler extends Thread {
         {
             this.listeCommande.remove((Commande)this.listeCommande.getObjectFromElement(element));
             
-            msg.addContent("Produit supprime");
+            msg.addContent("Commande supprimee");
         }
         else
-            msg.addContent("Produit inconnu");
+            msg.addContent("Commande inconnue");
         
         response.addContent(msg);
         return d;
