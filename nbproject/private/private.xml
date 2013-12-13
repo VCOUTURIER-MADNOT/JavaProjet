@@ -5,11 +5,12 @@
         <group>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/web/WEB-INF/web.xml</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Classes/Boutique.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/web/WEB-INF/afficherboutiques.jsp</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Classes/Utilisateur.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/AfficherBoutiqueServlet.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Utilisateurs.xml</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/ServeurRMI.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Gestionnaires/GestionnaireUtilisateurs.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Gestionnaires/GestionnaireBoutiques.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/Gestionnaire.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/web/index.jsp</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/DeconnexionServlet.java</file>

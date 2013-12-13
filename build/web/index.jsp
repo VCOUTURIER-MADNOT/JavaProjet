@@ -21,7 +21,7 @@
         <form name='deco' method='GET' action='/JavaProjet/deconnexion'>
             <input type='submit' value='Déconnexion'>
         </form>
-        <a href="/JavaProjet/afficherBoutique"> afficher Boutiques </a>
+        <a href="/JavaProjet/afficherboutique"> afficher Boutiques </a>
 <%
     }
     else
