@@ -9,20 +9,17 @@ package Servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author valentin
  */
-@WebServlet(name = "DeconnexionServlet", urlPatterns = {"/DeconnexionServlet"})
-public class DeconnexionServlet extends HttpServlet {
+public class AfficherBoutiqueServlet extends HttpServlet {
 
-    private String URL = "/index.jsp";
+    private String URL = "afficherBoutique.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,7 +33,7 @@ public class DeconnexionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        this.getServletContext().getRequestDispatcher(this.URL).forward(request, response);
+        this.getServletContext().getRequestDispatcher("/pagePersonnelle.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +48,8 @@ public class DeconnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.doPost(request, response);
+        
+        processRequest(request, response);
     }
 
     /**
@@ -66,7 +64,6 @@ public class DeconnexionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        this.detruireSession(request);
         processRequest(request, response);
     }
 
@@ -78,22 +75,6 @@ public class DeconnexionServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
-    private boolean isSessionValid(HttpSession _session)
-    {
-        return _session.getAttribute("login") != null;
-    }
-    
-    private void detruireSession(HttpServletRequest _request)
-    {
-        HttpSession session = _request.getSession(true);
-        if(this.isSessionValid(session))
-        {
-            session.removeAttribute("login");
-            session.removeAttribute("nom");
-            session.removeAttribute("admin");
-            session.invalidate();
-        }
-    }
 }

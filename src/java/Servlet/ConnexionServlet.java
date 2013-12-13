@@ -20,6 +20,8 @@ import javax.servlet.http.HttpSession;
  */
 public class ConnexionServlet extends HttpServlet {
 
+    private String URL = "/index.jsp";
+    
     private Gestionnaire gestionnaire = new Gestionnaire();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +35,7 @@ public class ConnexionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        this.getServletContext().getRequestDispatcher(this.URL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,7 +74,13 @@ public class ConnexionServlet extends HttpServlet {
             session.setAttribute("login", login);
             session.setAttribute("nom", u.getNom());
             session.setAttribute("admin", u.getUserLevel() >= 3);
+            request.setAttribute("msg", "Réussi");
         }
+        else
+        {
+            request.setAttribute("msg", "Echec");
+        }
+        
         
         processRequest(request, response);
     }

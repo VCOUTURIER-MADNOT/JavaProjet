@@ -8,8 +8,12 @@ package JavaRMI.Gestionnaires;
 
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
+import java.net.Inet4Address;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,11 +26,10 @@ public class Gestionnaire {
     public Gestionnaire()
     {
         try {
-            Registry registry = LocateRegistry.getRegistry(12345);
-            GU = (IGestionnaireUtilisateurs) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireUtilisateurs");
-            GB = (IGestionnaireBoutiques) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireBoutiques");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            GU = new GestionnaireUtilisateurs();
+            GB = new GestionnaireBoutiques();
+        } catch (RemoteException ex) {
+            Logger.getLogger(Gestionnaire.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

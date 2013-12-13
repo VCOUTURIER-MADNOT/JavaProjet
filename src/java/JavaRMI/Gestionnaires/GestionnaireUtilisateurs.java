@@ -50,6 +50,14 @@ public class GestionnaireUtilisateurs extends UnicastRemoteObject implements IGe
 
     @Override
     public boolean isValidAuthentication(String _login, String _password) throws RemoteException {
-        return true;
+        Utilisateur u = this.getUtilisateur(_login);
+        if(u != null)
+        {
+            return u.getPassword().equals(_password);
+        }
+        else
+        {
+            return false;
+        }
     }
 }

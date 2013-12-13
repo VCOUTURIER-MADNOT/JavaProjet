@@ -3,14 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Client/ClientRMI.java</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Boutique/Server/ServerProduit.java</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Boutique/Classes/Produit.java</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Commandes.xml</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Boutique/Classes/Commande.java</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Boutique/Server/UDPRequestHandler.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Classes/Boutique.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Classes/Utilisateur.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/AfficherBoutiqueServlet.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Utilisateurs.xml</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/ServeurRMI.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/JavaRMI/Gestionnaires/GestionnaireUtilisateurs.java</file>
             <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/Gestionnaire.java</file>
-            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Boutique/Server/TCPRequestHandler.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/web/index.jsp</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/DeconnexionServlet.java</file>
+            <file>file:/D:/Users/valentin/Documents/GitHub/JavaProjet/src/java/Servlet/ConnexionServlet.java</file>
         </group>
     </open-files>
 </project-private>

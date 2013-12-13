@@ -45,8 +45,8 @@ public class Gestionnaire {
     {
         try {
             Registry registry = LocateRegistry.getRegistry(12345);
-            GU = (IGestionnaireUtilisateurs) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireUtilisateurs");
-            GB = (IGestionnaireBoutiques) registry.lookup("rmi://127.0.0.1:12345/JavaRMI/GestionnaireBoutiques");
+            GU = (IGestionnaireUtilisateurs) registry.lookup("rmi://localhost/JavaRMI/GestionnaireUtilisateurs");
+            GB = (IGestionnaireBoutiques) registry.lookup("rmi://localhost/JavaRMI/GestionnaireBoutiques");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
