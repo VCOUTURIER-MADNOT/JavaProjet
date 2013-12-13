@@ -6,9 +6,10 @@
 
 package Servlet;
 
-import JavaRMI.Classes.Utilisateur;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author valentin
  */
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "DeconnexionServlet", urlPatterns = {"/DeconnexionServlet"})
+public class DeconnexionServlet extends HttpServlet {
 
-    private Gestionnaire gestionnaire = new Gestionnaire();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,7 +48,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        this.doPost(request, response);
     }
 
     /**
@@ -61,17 +62,6 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
-        String mdp = request.getParameter("mdp");
-        
-        if(gestionnaire.isValidAuthentication(login, mdp))
-        {
-            Utilisateur u = gestionnaire.getUtilisateur(login);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("login", login);
-            session.setAttribute("nom", u.getNom());
-            session.setAttribute("admin", u.getUserLevel() >= 3);
-        }
         
         processRequest(request, response);
     }
@@ -85,5 +75,18 @@ public class ConnexionServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private boolean isSessionValid(HttpSession _session)
+    {
+        return _session.getAttribute("login") != null;
+    }
     
+    private void detruireSession(HttpServletRequest _request)
+    {
+        HttpSession session = _request.getSession(true);
+        if(this.isSessionValid(session))
+        {
+            session.invalidate();
+        }
+    }
 }

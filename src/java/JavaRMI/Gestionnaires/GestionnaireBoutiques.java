@@ -9,8 +9,11 @@ package JavaRMI.Gestionnaires;
 import JavaRMI.Classes.Boutique;
 import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
+import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
 import Util.NotifyLists.BoutiqueNotifyList;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
@@ -55,7 +58,8 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     @Override
     public void supprimerBoutique(String _loginAdminBoutique, String _loginAdmin) throws RemoteException {
         Boutique b = null;
-        Utilisateur u = GestionnaireUtilisateurs.getUtilisateur(_loginAdmin);
+        Gestionnaire ge = new Gestionnaire();
+        Utilisateur u = ge.GU.getUtilisateur(_loginAdmin);
         if((b = getBoutique(_loginAdminBoutique)) != null)
         {
             if(b.getAdmin().equals(u) || u.isAdmin())

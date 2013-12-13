@@ -1,6 +1,6 @@
 package JavaRMI.Classes;
 
-import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
+import JavaRMI.Gestionnaires.Gestionnaire;
 import java.io.Serializable;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -20,10 +20,11 @@ public class Boutique implements Serializable{
         try {
             this.nom = _nom;
             this.ip = (Inet4Address) Inet4Address.getAllByName("0.0.0.0")[0];
-            this.admin = GestionnaireUtilisateurs.getUtilisateur(_loginAdmin);
+            Gestionnaire ge = new Gestionnaire();
+            this.admin = ge.GU.getUtilisateur(_loginAdmin);
             this.tcpPort = _tcpPort;
             this.udpPort = _udpPort;
-        } catch (UnknownHostException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

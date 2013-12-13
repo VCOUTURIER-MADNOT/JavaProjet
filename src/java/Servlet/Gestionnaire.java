@@ -9,6 +9,7 @@ package Servlet;
 import Boutique.Classes.Commande;
 import Boutique.Classes.Produit;
 import JavaRMI.Classes.Boutique;
+import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
@@ -24,6 +25,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -70,7 +73,22 @@ public class Gestionnaire {
     
     public boolean isUtilisateur(String _login)
     {
-        return GestionnaireUtilisateurs.getUtilisateur(_login) != null;
+        try {
+            return GU.getUtilisateur(_login) != null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    public Utilisateur getUtilisateur(String _login)
+    {
+        try {
+            return GU.getUtilisateur(_login);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
     
     public boolean isValidAuthentication(String _login, String _password)

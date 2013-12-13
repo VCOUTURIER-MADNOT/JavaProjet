@@ -25,13 +25,13 @@ public class GestionnaireUtilisateurs extends UnicastRemoteObject implements IGe
     
     public void desinscrire(String _login, String _loginAdmin) throws RemoteException
     {
-        if(GestionnaireUtilisateurs.getUtilisateur(_loginAdmin).isAdmin())
+        if(this.getUtilisateur(_loginAdmin).isAdmin())
         {
             unl.remove(getUtilisateur(_login));
         }
     }
     
-    public static Utilisateur getUtilisateur(String _login)
+    public Utilisateur getUtilisateur(String _login) throws RemoteException
     {
         int i = 0;
         Utilisateur utilisateur = null;
