@@ -4,6 +4,8 @@
     Author     : valentin
 --%>
 
+<%@page import="Util.NotifyLists.BoutiqueNotifyList"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="JavaRMI.Classes.Boutique"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,11 +17,15 @@
     </head>
     <body>
         <h1>Boutiques!</h1>
-        <%
-            ArrayList<Boutique> boutiques = (ArrayList<Boutique>) request.getAttribute("boutiques");
-            for(Boutique b : boutiques)
+        <%            
+            ArrayList boutiques = (ArrayList) request.getAttribute("boutiques");
+            if(boutiques != null)
             {
-                out.println("<a href='/afficherproduits?admin="+ b.getAdmin().getLogin() + ">" + b.getNom() + "</a>");
+                for(Object o : boutiques)
+                {
+                    Boutique b = (Boutique) o;
+                    out.println("<a href='/afficherproduits?boutique="+b.getNom()+"'>" + b.getNom() + "</a>");
+                }
             }
         %>
         

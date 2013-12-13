@@ -6,7 +6,9 @@
 
 package Servlet;
 
+import JavaRMI.Classes.Boutique;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,11 +33,16 @@ public class AfficherBoutiqueServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         Gestionnaire g = new Gestionnaire();
+        ArrayList<Boutique> boutiques = g.getBoutiques();
+        request.setAttribute("boutiques", boutiques);
+        if(boutiques == null)
+        {
+           request.setAttribute("msg", "Boutiques est null !");
+        }
         
-        request.setAttribute("boutiques", g.getBoutiques());
-        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(URL);
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher rd = request.getRequestDispatcher(this.URL);
         rd.forward(request, response);
     }
 

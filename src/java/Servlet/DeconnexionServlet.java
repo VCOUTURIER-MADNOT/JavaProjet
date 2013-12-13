@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "DeconnexionServlet", urlPatterns = {"/DeconnexionServlet"})
 public class DeconnexionServlet extends HttpServlet {
 
-    private String URL = "/index.jsp";
+    private String URL = "/WEB-INF/index.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,7 +36,7 @@ public class DeconnexionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        this.getServletContext().getRequestDispatcher(this.URL).forward(request, response);
+        request.getRequestDispatcher(this.URL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

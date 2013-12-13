@@ -101,7 +101,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
 
     @Override
     public Object getObjectFromElement(Element _e) {
-        Boutique b = new Boutique(_e.getChildText("Nom"), _e.getChildText("Admin"), Integer.parseInt(_e.getChildText("TcpPort")), Integer.parseInt(_e.getChildText("UdpPort")));
+        Boutique b = new Boutique(_e.getChildText("Admin"), Integer.parseInt(_e.getChildText("TcpPort")), Integer.parseInt(_e.getChildText("UdpPort")));
         b.setIpFromString(_e.getChildText("Ip"));
         return b;
     }

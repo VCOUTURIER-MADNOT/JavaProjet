@@ -106,7 +106,7 @@ public class Gestionnaire {
     public void creerBoutique(String _nomBoutique, String _loginAdmin, int _tcpPort, int _udpPort)
     {
         try {
-            GB.creerBoutique(_nomBoutique, _loginAdmin, _tcpPort, _udpPort);
+            GB.creerBoutique(_loginAdmin, _tcpPort, _udpPort);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -127,17 +127,18 @@ public class Gestionnaire {
         try {
             return GB.getBoutiques();
         } catch (RemoteException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
     
-    public ArrayList<Produit> getProduits(String _loginAdminBoutique)
+    public ArrayList<Produit> getProduits(String _nomBoutique)
     {
         try {
             
             ArrayList<Produit> listeProduits = new ArrayList<Produit>();
             
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             Socket so = new Socket(b.getIp(), b.getTcpPort());
             
             Document d = new Document();
@@ -173,11 +174,11 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir ajouter un produit
-    public void ajoutProduit(String _loginAdminBoutique, Produit _p)
+    public void ajoutProduit(String _nomBoutique, Produit _p)
     {
         try {
             
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             Socket so = new Socket(b.getIp(), b.getTcpPort());
             
             Document d = new Document();
@@ -204,11 +205,11 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir supprimer un produit
-    public void supprimerProduit(String _loginAdminBoutique, String _nomProduit)
+    public void supprimerProduit(String _nomBoutique, String _nomProduit)
     {
         try {
             
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             Socket so = new Socket(b.getIp(), b.getTcpPort());
             
             Document d = new Document();
@@ -237,10 +238,10 @@ public class Gestionnaire {
     }
     
     // Seul un client enregistré devrait pouvoir ajouter une commande
-    public String ajouterCommande(ArrayList<String> _nomProduits, String _loginClient, String _loginAdminBoutique)
+    public String ajouterCommande(ArrayList<String> _nomProduits, String _loginClient, String _nomBoutique)
     {
         try {
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             
             Document d = new Document();
             Element e = new Element("Request");
@@ -252,7 +253,7 @@ public class Gestionnaire {
             for(String nomProduit : _nomProduits)
             {
                 // On récupère un élément à partir d'un objet de telle boutique
-                eList.addContent(Produit.getElementFromObject(this.getProduit(nomProduit, _loginAdminBoutique)));
+                eList.addContent(Produit.getElementFromObject(this.getProduit(nomProduit, _nomBoutique)));
             }
             
             Element eId = new Element("Id");
@@ -297,10 +298,10 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir supprimer une commande
-    public String supprimerCommande(String _idCommande, String _loginAdminBoutique)
+    public String supprimerCommande(String _idCommande, String _nomBoutique)
     {
         try {
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             
             Document d = new Document();
             Element e = new Element("Request");
@@ -339,10 +340,10 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir valider une commande
-    public String validerCommande(String _idCommande, boolean valide, String _loginAdminBoutique)
+    public String validerCommande(String _idCommande, boolean valide, String _nomBoutique)
     {
         try {
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             
             Document d = new Document();
             Element e = new Element("Request");
@@ -386,11 +387,11 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir afficher les commandes
-    public ArrayList<Commande> afficherCommandes(String _loginAdminBoutique)
+    public ArrayList<Commande> afficherCommandes(String _nomBoutique)
     {
         ArrayList<Commande> commandes = null;
         try {
-            Boutique b = GB.getBoutique(_loginAdminBoutique);
+            Boutique b = GB.getBoutiqueByName(_nomBoutique);
             
             Document d = new Document();
             Element e = new Element("Request");

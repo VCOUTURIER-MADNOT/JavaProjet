@@ -31,11 +31,25 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     }
     
     @Override
-    public Boutique getBoutique(String _loginBoutiqueAdmin) throws RemoteException 
+    public Boutique getBoutiqueByAdmin(String _loginBoutiqueAdmin) throws RemoteException 
     {
         for(Boutique b : boutiques)
         {
             if(b.getAdmin().getLogin().equals(_loginBoutiqueAdmin))
+            {
+                return b;
+            }
+        }
+        
+        return null;
+    }
+    
+    @Override
+    public Boutique getBoutiqueByName(String _nomBoutique) throws RemoteException 
+    {
+        for(Boutique b : boutiques)
+        {
+            if(b.getAdmin().getNom().equals(_nomBoutique))
             {
                 return b;
             }
@@ -50,8 +64,8 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     }
 
     @Override
-    public void creerBoutique(String _nom, String _loginAdmin, int _tcpPort, int _udpPort) throws RemoteException {
-        Boutique b = new Boutique(_nom, _loginAdmin, _tcpPort, _udpPort);
+    public void creerBoutique(String _loginAdmin, int _tcpPort, int _udpPort) throws RemoteException {
+        Boutique b = new Boutique(_loginAdmin, _tcpPort, _udpPort);
         boutiques.add(b);
     }
 
@@ -60,7 +74,7 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
         Boutique b = null;
         Gestionnaire ge = new Gestionnaire();
         Utilisateur u = ge.GU.getUtilisateur(_loginAdmin);
-        if((b = getBoutique(_loginAdminBoutique)) != null)
+        if((b = getBoutiqueByAdmin(_loginAdminBoutique)) != null)
         {
             if(b.getAdmin().equals(u) || u.isAdmin())
             {

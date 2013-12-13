@@ -9,16 +9,17 @@ import java.util.Objects;
 
 public class Boutique implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     private String          nom;
     private int             tcpPort;
     private int             udpPort;
     private Inet4Address    ip;
     private Utilisateur     admin;
     
-    public Boutique(String _nom, String _loginAdmin, int _tcpPort, int _udpPort)
+    public Boutique(String _loginAdmin, int _tcpPort, int _udpPort)
     {
         try {
-            this.nom = _nom;
+            this.nom = _loginAdmin + "'s Shop";
             this.ip = (Inet4Address) Inet4Address.getAllByName("0.0.0.0")[0];
             Gestionnaire ge = new Gestionnaire();
             this.admin = ge.GU.getUtilisateur(_loginAdmin);
