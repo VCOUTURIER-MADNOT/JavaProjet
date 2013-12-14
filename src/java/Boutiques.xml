@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <Boutiques>
   <Boutique>
-    <Nom>Valcou'Shop</Nom>
+    <Nom>Valcou's Shop</Nom>
     <Ip>0.0.0.0</Ip>
     <TcpPort>65432</TcpPort>
     <UdpPort>65433</UdpPort>

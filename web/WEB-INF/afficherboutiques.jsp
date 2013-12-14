@@ -24,8 +24,12 @@
                 for(Object o : boutiques)
                 {
                     Boutique b = (Boutique) o;
-                    out.println("<a href='/afficherproduits?boutique="+b.getNom()+"'>" + b.getNom() + "</a>");
+                    out.println("<a href='/JavaProjet/afficherproduits?boutique=" + URLEncoder.encode(b.getNom(),"UTF-8") + "'>" + b.getNom() + "</a>");
                 }
+            }
+            else
+            {
+                out.print("null");
             }
         %>
         

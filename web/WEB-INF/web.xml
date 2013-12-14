@@ -12,6 +12,50 @@
         <servlet-name>DeconnexionServlet</servlet-name>
         <servlet-class>Servlet.DeconnexionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AfficherProduits</servlet-name>
+        <servlet-class>Servlet.AfficherProduitsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjouterProduit</servlet-name>
+        <servlet-class>Servlet.AjouterProduitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupprimerProduit</servlet-name>
+        <servlet-class>Servlet.SupprimerProduitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjouterCommande</servlet-name>
+        <servlet-class>Servlet.AjouterCommandeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupprimerCommande</servlet-name>
+        <servlet-class>Servlet.SupprimerCommandeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AfficherCommande</servlet-name>
+        <servlet-class>Servlet.AfficherCommandeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValiderCommande</servlet-name>
+        <servlet-class>Servlet.ValiderCommandeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Inscrire</servlet-name>
+        <servlet-class>Servlet.InscrireServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Desinscrire</servlet-name>
+        <servlet-class>Servlet.DesinscrireServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreerBoutique</servlet-name>
+        <servlet-class>Servlet.CreerBoutiqueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupprimerBoutique</servlet-name>
+        <servlet-class>Servlet.SupprimerBoutiqueServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnexionServlet</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -23,6 +67,50 @@
     <servlet-mapping>
         <servlet-name>AfficherBoutiqueServlet</servlet-name>
         <url-pattern>/afficherboutique</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherProduits</servlet-name>
+        <url-pattern>/afficherproduits</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjouterProduit</servlet-name>
+        <url-pattern>/ajouterproduit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupprimerProduit</servlet-name>
+        <url-pattern>/supprimerproduit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjouterCommande</servlet-name>
+        <url-pattern>/ajoutercommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupprimerCommande</servlet-name>
+        <url-pattern>/supprimercommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherCommande</servlet-name>
+        <url-pattern>/affichercommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValiderCommande</servlet-name>
+        <url-pattern>/validercommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inscrire</servlet-name>
+        <url-pattern>/inscrire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Desinscrire</servlet-name>
+        <url-pattern>/desinscrire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreerBoutique</servlet-name>
+        <url-pattern>/creerboutique</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupprimerBoutique</servlet-name>
+        <url-pattern>/supprimerboutique</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

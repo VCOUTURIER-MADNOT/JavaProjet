@@ -1,0 +1,172 @@
+#body {
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 100%;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	min-width: 0px;
+}
+
+#backgroundImg {
+	float: none;
+	width: 100%;
+	max-width: 100%;
+	height: 450px;
+	clear: none;
+	color: rgb(0, 0, 0);
+	position: relative;
+	top: 0px;
+	left: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
+#computerImg {
+	float: none;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	clear: none;
+	color: rgb(0, 0, 0);
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	padding: 0px;
+	margin-top: -337px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#loginBtn {
+	float: none;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	clear: none;
+	color: rgb(0, 0, 0);
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	margin-top: -278px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#panierBtn {
+	float: none;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	clear: none;
+	color: rgb(0, 0, 0);
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	min-width: 0px;
+	margin-top: 58px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	float: left;
+	height: auto;
+	margin-left: 0%;
+	margin-top: -525px;
+	clear: none;
+	width: 100%;
+	min-height: 50px;
+	min-width: 0px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background-color: rgb(0, 0, 0);
+}
+
+#produits {
+	float: left;
+	height: auto;
+	margin: 0px 0px 0px 0%;
+	clear: both;
+	width: 100%;
+	min-height: 600px;
+	min-width: 0px;
+}
+
+#boutiqueTxt {
+	float: left;
+	font-size: 2em;
+	width: auto;
+	height: auto;
+	text-align: left;
+	font-weight: 500;
+	line-height: 1em;
+	word-wrap: break-word;
+	margin-left: 2.333333%;
+	margin-top: 9px;
+	clear: none;
+	min-height: 0px;
+	color: rgb(255, 255, 255);
+}
+
+#boutiques {
+	float: left;
+	height: auto;
+	margin: 0px 0px 0px 0%;
+	clear: both;
+	width: 100%;
+	min-height: 450px;
+	min-width: 0px;
+	background-color: rgb(226, 231, 237);
+}
+
+#footer {
+	float: left;
+	height: auto;
+	margin-left: 0px;
+	margin-top: 0px;
+	clear: both;
+	width: 100%;
+	min-height: 300px;
+	background-color: rgb(55, 62, 74);
+	min-width: 0px;
+}
+
+.text {
+	float: left;
+	font-size: 2em;
+	width: auto;
+	height: auto;
+	text-align: left;
+	font-weight: normal;
+	line-height: 1em;
+	word-wrap: break-word;
+	margin-left: 2.332031%;
+	margin-top: 30px;
+	clear: none;
+	min-height: 0px;
+	color: rgb(150, 150, 150);
+}
+
+#footerTxt {
+	float: none;
+	font-size: 1em;
+	width: auto;
+	height: auto;
+	text-align: center;
+	font-weight: normal;
+	line-height: 1em;
+	word-wrap: break-word;
+	margin-left: auto;
+	margin-top: 143px;
+	clear: none;
+	min-height: 0px;
+	color: rgb(255, 255, 255);
+	margin-right: auto;
+}
+

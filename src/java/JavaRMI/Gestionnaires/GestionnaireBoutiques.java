@@ -49,7 +49,7 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     {
         for(Boutique b : boutiques)
         {
-            if(b.getAdmin().getNom().equals(_nomBoutique))
+            if(b.getNom().equals(_nomBoutique))
             {
                 return b;
             }
@@ -70,11 +70,11 @@ public class GestionnaireBoutiques extends UnicastRemoteObject implements IGesti
     }
 
     @Override
-    public void supprimerBoutique(String _loginAdminBoutique, String _loginAdmin) throws RemoteException {
+    public void supprimerBoutique(String _nomBoutique, String _loginAdmin) throws RemoteException {
         Boutique b = null;
         Gestionnaire ge = new Gestionnaire();
         Utilisateur u = ge.GU.getUtilisateur(_loginAdmin);
-        if((b = getBoutiqueByAdmin(_loginAdminBoutique)) != null)
+        if((b = getBoutiqueByName(_nomBoutique)) != null)
         {
             if(b.getAdmin().equals(u) || u.isAdmin())
             {

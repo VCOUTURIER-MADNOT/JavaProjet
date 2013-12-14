@@ -22,21 +22,4 @@ and open the template in the editor.
       </Produit>
     </ListeProduit>
   </Commande>
-  <Commande>
-    <Id>b3ff7222-b8df-4047-9afc-a9ea08861dac</Id>
-    <Login>Maxence</Login>
-    <Valide>non</Valide>
-    <ListeProduit>
-      <Produit>
-        <Nom>LEL1</Nom>
-        <Description>Valentin</Description>
-        <Prix>0.5</Prix>
-      </Produit>
-      <Produit>
-        <Nom>LEL2</Nom>
-        <Description>Valentin</Description>
-        <Prix>0.5</Prix>
-      </Produit>
-    </ListeProduit>
-  </Commande>
 </Commandes>

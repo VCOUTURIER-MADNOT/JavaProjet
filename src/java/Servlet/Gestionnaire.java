@@ -52,12 +52,21 @@ public class Gestionnaire {
         }
     }
     
-    public void inscrire(String _login, String _mdp, String _name)
+    public String inscrire(String _login, String _mdp, String _name)
     {
         try {
-            GU.inscrire(_login, _mdp, _name);
+            if(GU.getUtilisateur(_login) == null)
+            {
+                GU.inscrire(_login, _mdp, _name);
+                return "Inscription réalisée";
+            }
+            else
+            {
+                return "Login déjà existant"; 
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
+            return "Un problème est survenu, inscription annulée";
         }
     }
     
@@ -103,7 +112,7 @@ public class Gestionnaire {
     }
     
     // Seul un client enregistré devrait pouvoir créer une boutique
-    public void creerBoutique(String _nomBoutique, String _loginAdmin, int _tcpPort, int _udpPort)
+    public void creerBoutique(String _loginAdmin, int _tcpPort, int _udpPort)
     {
         try {
             GB.creerBoutique(_loginAdmin, _tcpPort, _udpPort);
@@ -150,7 +159,7 @@ public class Gestionnaire {
             pw.println("\n");
             pw.flush();
             so.shutdownOutput();
-            //System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
+            System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
             
             SAXBuilder sb = new SAXBuilder();
             d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
@@ -174,7 +183,7 @@ public class Gestionnaire {
     }
     
     // Seul l'admin de la boutique devrait pouvoir ajouter un produit
-    public void ajoutProduit(String _nomBoutique, Produit _p)
+    public String ajoutProduit(String _nomBoutique, Produit _p)
     {
         try {
             
@@ -195,17 +204,17 @@ public class Gestionnaire {
             
             SAXBuilder sb = new SAXBuilder();
             d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
-            
-            System.out.println(new XMLOutputter().outputString(d));
-            
             so.close();
+            
+            return d.getRootElement().getChildText("Message");
         } catch (Exception ex) {
             ex.printStackTrace();
+            return "Produit non ajouté";
         }
     }
     
     // Seul l'admin de la boutique devrait pouvoir supprimer un produit
-    public void supprimerProduit(String _nomBoutique, String _nomProduit)
+    public String supprimerProduit(String _nomBoutique, String _nomProduit)
     {
         try {
             
@@ -228,12 +237,12 @@ public class Gestionnaire {
             
             SAXBuilder sb = new SAXBuilder();
             d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
-            
-            System.out.println(new XMLOutputter().outputString(d));
-            
             so.close();
+            
+            return d.getRootElement().getChildText("Message");
         } catch (Exception ex) {
             ex.printStackTrace();
+            return "Produit non ajouté";
         }
     }
     
@@ -454,7 +463,7 @@ public class Gestionnaire {
         }
     }
     
-    private Produit getProduit(String _nomProduit, String _nomBoutique)
+    public Produit getProduit(String _nomProduit, String _nomBoutique)
     {
         for(Produit p : this.getProduits(_nomBoutique))
         {
@@ -465,5 +474,25 @@ public class Gestionnaire {
         }
         
         return null;
+    }
+    
+    public Boutique getBoutiqueByAdmin(String _loginAdmin)
+    {
+        try {
+            return GB.getBoutiqueByAdmin(_loginAdmin);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
+    public Boutique getBoutiqueByName(String _nomBoutique)
+    {
+        try {
+            return GB.getBoutiqueByName(_nomBoutique);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
