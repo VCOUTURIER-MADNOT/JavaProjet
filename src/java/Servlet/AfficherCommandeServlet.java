@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
 public class AfficherCommandeServlet extends HttpServlet {
 
     private String URLOk = "/WEB-INF/affichercommandes.jsp";
-    private String URLKo = "/deconnexion";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,7 +49,7 @@ public class AfficherCommandeServlet extends HttpServlet {
                 || ge.getBoutiqueByAdmin((String)session.getAttribute("login")) == null)
         {
             request.setAttribute("msg", "Vous n'avez pas le droit de voir les commandes");
-            RequestDispatcher rd = request.getRequestDispatcher(this.URLKo);
+            RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response); 
         }
         else
