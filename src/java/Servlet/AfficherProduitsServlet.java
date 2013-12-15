@@ -36,25 +36,32 @@ public class AfficherProduitsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nomParamBoutique = "boutique";
         
-        String nomBoutique = URLDecoder.decode(request.getParameter(nomParamBoutique), "UTF-8");
-        
-        Gestionnaire ge = new Gestionnaire();
-        ArrayList<Produit> produits = ge.getProduits(nomBoutique);
-        request.setAttribute("produits", produits);
-        request.setAttribute("msg", "NomBoutique :" + nomBoutique + "; produits : " + ge.getProduits(nomBoutique));
-        
-        // On réalise un suivi de la boutique afin de gérer plus facilement les commandes
-        HttpSession session = request.getSession(false);
-        if(session != null && session.getAttribute("login") != null)
+        String nomBoutique = URLDecoder.decode(request.getParameter("boutique"), "UTF-8");
+        if(nomBoutique == null || nomBoutique.equals(""))
         {
-            session.setAttribute("boutiqueActuelle", ge.getBoutiqueByName(nomBoutique));
+            request.setAttribute("msg", "Cette boutique n'existe pas !");
+            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        }
+        else
+        {
+           Gestionnaire ge = new Gestionnaire();
+           ArrayList<Produit> produits = ge.getProduits(nomBoutique);
+           request.setAttribute("produits", produits);
+           request.setAttribute("msg", "NomBoutique :" + nomBoutique + "; produits : " + ge.getProduits(nomBoutique));
+
+           // On réalise un suivi de la boutique afin de gérer plus facilement les commandes
+           HttpSession session = request.getSession(false);
+           if(session != null && session.getAttribute("login") != null)
+           {
+               session.setAttribute("boutiqueActuelle", ge.getBoutiqueByName(nomBoutique));
+           }
+
+           response.setContentType("text/html;charset=UTF-8");
+           RequestDispatcher rd = request.getRequestDispatcher(this.URL);
+           rd.forward(request, response);   
         }
         
-        response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher(this.URL);
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

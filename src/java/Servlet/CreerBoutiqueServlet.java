@@ -51,7 +51,7 @@ public class CreerBoutiqueServlet extends HttpServlet {
         }
         else
         {
-            request.setAttribute("msg", "Impossible de créer une boutiquer.");
+            request.setAttribute("msg", "Impossible de créer une boutique.");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(this.URLKo);
             requestDispatcher.forward(request, response);
         }

@@ -36,10 +36,10 @@
 					            <input type='submit' value='Déconnexion'>
 					        </form>
                                                 <a style="margin-left: 27px" href="/JavaProjet/affichercommande">Commandes</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/afficherproduit">Produits</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/ajoutboutique">Ajout. Boutique</a>
+                                                <a style="margin-left: 27px" href="/JavaProjet/afficherproduits?boutique=">Produits</a>
+                                                <a style="margin-left: 27px" href="/JavaProjet/creerboutique">Ajout. Boutique</a>
                                                 <a style="margin-left: 27px" href="/JavaProjet/supprimerboutique">Suppr. Boutique</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/desinscre">Desincrire</a>
+                                                <a style="margin-left: 27px" href="/JavaProjet/desinscrire">Desincrire</a>
                                                 
 					<%
 					    }
