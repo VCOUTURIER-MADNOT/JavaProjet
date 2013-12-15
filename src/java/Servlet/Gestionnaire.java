@@ -10,9 +10,9 @@ import Boutique.Classes.Commande;
 import Boutique.Classes.Produit;
 import JavaRMI.Classes.Boutique;
 import JavaRMI.Classes.Utilisateur;
-import JavaRMI.Gestionnaires.GestionnaireUtilisateurs;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
+import Servlet.Util.StringUtil;
 import java.io.ByteArrayInputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
@@ -25,8 +25,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -162,7 +160,7 @@ public class Gestionnaire {
             System.out.println("Requete afficher produit envoyée ! \n" + new XMLOutputter().outputString(d));
             
             SAXBuilder sb = new SAXBuilder();
-            d = (Document) sb.build(new ByteArrayInputStream(Util.StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
+            d = (Document) sb.build(new ByteArrayInputStream(StringUtil.XMLInputStreamToStr(so.getInputStream()).toString().getBytes()));
             
             
             Element rootElement = d.getRootElement();
