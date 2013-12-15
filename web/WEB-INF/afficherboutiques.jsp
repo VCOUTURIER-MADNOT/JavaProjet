@@ -4,7 +4,6 @@
     Author     : valentin
 --%>
 
-<%@page import="Util.NotifyLists.BoutiqueNotifyList"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="JavaRMI.Classes.Boutique"%>

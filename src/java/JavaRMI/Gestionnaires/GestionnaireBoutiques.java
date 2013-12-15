@@ -10,7 +10,7 @@ import JavaRMI.Classes.Boutique;
 import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Interfaces.IGestionnaireBoutiques;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
-import Util.NotifyLists.BoutiqueNotifyList;
+import JavaRMI.NotifyLists.BoutiqueNotifyList;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

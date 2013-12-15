@@ -1,6 +1,7 @@
-package Util.NotifyLists;
+package JavaRMI.NotifyLists;
 
 import JavaRMI.Classes.Boutique;
+import JavaRMI.NotifyLists.NotifyList;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -13,7 +14,7 @@ public class BoutiqueNotifyList extends NotifyList<Boutique>{
 
     public BoutiqueNotifyList(){
         SAXBuilder sxb = new SAXBuilder();
-        this.xmlUrl = "src/java/Boutiques.xml";
+        this.xmlUrl = "src/java/JavaRMI/Boutiques.xml";
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));

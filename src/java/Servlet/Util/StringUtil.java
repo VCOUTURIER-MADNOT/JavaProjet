@@ -1,5 +1,6 @@
-package Util;
+package Servlet.Util;
 
+import Util.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

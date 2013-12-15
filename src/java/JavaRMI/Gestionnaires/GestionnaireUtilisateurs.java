@@ -2,7 +2,7 @@ package JavaRMI.Gestionnaires;
 
 import JavaRMI.Classes.Utilisateur;
 import JavaRMI.Interfaces.IGestionnaireUtilisateurs;
-import Util.NotifyLists.UtilisateurNotifyList;
+import JavaRMI.NotifyLists.UtilisateurNotifyList;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

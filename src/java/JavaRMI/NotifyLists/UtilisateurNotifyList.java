@@ -1,6 +1,7 @@
-package Util.NotifyLists;
+package JavaRMI.NotifyLists;
 
 import JavaRMI.Classes.Utilisateur;
+import JavaRMI.NotifyLists.NotifyList;
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +13,7 @@ public class UtilisateurNotifyList extends NotifyList<Utilisateur>{
 
     public UtilisateurNotifyList() {
         SAXBuilder sxb = new SAXBuilder();
-        this.xmlUrl = "src/java/Utilisateurs.xml";
+        this.xmlUrl = "src/java/JavaRMI/Utilisateurs.xml";
         try
         {
             this.document = sxb.build(new File(this.xmlUrl));

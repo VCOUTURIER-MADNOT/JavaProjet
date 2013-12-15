@@ -1,4 +1,4 @@
-package Util.NotifyLists;
+package JavaRMI.NotifyLists;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
