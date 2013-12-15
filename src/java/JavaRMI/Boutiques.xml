@@ -12,7 +12,8 @@ and open the template in the editor.
     <UdpPort>65433</UdpPort>
     <Admin>Valcou</Admin>
   </Boutique>
-      <Nom>Maxence's Shop</Nom>
+  <Boutique>
+    <Nom>Maxence's Shop</Nom>
     <Ip>0.0.0.0</Ip>
     <TcpPort>65432</TcpPort>
     <UdpPort>65433</UdpPort>
