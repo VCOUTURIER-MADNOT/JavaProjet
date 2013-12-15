@@ -25,7 +25,6 @@ import javax.servlet.http.HttpSession;
 public class ValiderCommandeServlet extends HttpServlet {
 
     private String URLOk = "/WEB-INF/validercommande.jsp";
-    private String URLKo = "/deconnexion";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,7 +49,7 @@ public class ValiderCommandeServlet extends HttpServlet {
                 || ge.getBoutiqueByAdmin((String)session.getAttribute("login")) == null)
         {
             request.setAttribute("msg", "Vous n'avez pas le droit de valider les commandes");
-            RequestDispatcher rd = request.getRequestDispatcher(this.URLKo);
+            RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response); 
         }
         else

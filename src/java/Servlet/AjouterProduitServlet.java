@@ -24,7 +24,6 @@ import javax.servlet.http.HttpSession;
 public class AjouterProduitServlet extends HttpServlet {
 
     private String URLOk = "/WEB-INF/ajouterproduit.jsp";
-    private String URLKo = "/deconnexion";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,7 +48,7 @@ public class AjouterProduitServlet extends HttpServlet {
         if(session == null || session.getAttribute("login") == null || !session.getAttribute("login").equals(ge.getBoutiqueByName(nomBoutique).getAdmin().getLogin()))
         {
             request.setAttribute("msg", "Vous n'avez pas le droit d'ajouter de produit à cette boutique");
-            RequestDispatcher rd = request.getRequestDispatcher(this.URLKo);
+            RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response); 
         }
         else

@@ -24,7 +24,6 @@ import javax.servlet.http.HttpSession;
 public class AjouterCommandeServlet extends HttpServlet {
 
     private String URLOk = "/WEB-INF/ajoutercommande.jsp";
-    private String URLKo = "/deconnexion";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,7 +43,7 @@ public class AjouterCommandeServlet extends HttpServlet {
         if(session == null || session.getAttribute("login") == null )
         {
             request.setAttribute("msg", "Vous n'avez pas le droit de commander");
-            RequestDispatcher rd = request.getRequestDispatcher(this.URLKo);
+            RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response); 
         }
         else

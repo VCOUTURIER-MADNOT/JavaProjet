@@ -25,7 +25,6 @@ import javax.servlet.http.HttpSession;
 public class SupprimerCommandeServlet extends HttpServlet {
 
     private String URLOk = "/WEB-INF/supprimercommande.jsp";
-    private String URLKo = "/deconnexion";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,7 +49,7 @@ public class SupprimerCommandeServlet extends HttpServlet {
                 || ge.getBoutiqueByAdmin((String)session.getAttribute("login")) == null)
         {
             request.setAttribute("msg", "Vous n'avez pas le droit de supprimer la commande");
-            RequestDispatcher rd = request.getRequestDispatcher(this.URLKo);
+            RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response); 
         }
         else
