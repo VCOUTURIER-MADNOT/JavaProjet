@@ -6,6 +6,7 @@
 
 package Servlet;
 
+import JavaRMI.Classes.Boutique;
 import JavaRMI.Classes.Utilisateur;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -70,10 +71,16 @@ public class ConnexionServlet extends HttpServlet {
         if(gestionnaire.isValidAuthentication(login, mdp))
         {
             Utilisateur u = gestionnaire.getUtilisateur(login);
+            Gestionnaire ge = new Gestionnaire();
+            Boutique b = ge.getBoutiqueByAdmin(login) != null ? ge.getBoutiqueByAdmin(login) : ge.getBoutiques().get(0) ;
             HttpSession session = request.getSession(true);
+            session.setAttribute("produits", b != null ? ge.getProduits(b.getNom()) : null);
+            session.setAttribute("boutiques", ge.getBoutiques());
             session.setAttribute("login", login);
             session.setAttribute("nom", u.getNom());
             session.setAttribute("admin", u.getUserLevel() >= 3);
+            session.setAttribute("boutiqueDefaut", b != null ? b.getNom() : "");
+            session.setAttribute("aBoutique", ge.getBoutiqueByAdmin(login) != null ? "oui" : "non");
             request.setAttribute("msg", "Réussi");
         }
         else

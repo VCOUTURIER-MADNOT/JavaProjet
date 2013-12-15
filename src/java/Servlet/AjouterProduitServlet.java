@@ -10,6 +10,7 @@ import Boutique.Classes.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class AjouterProduitServlet extends HttpServlet {
 
-    private String URLOk = "/WEB-INF/ajouterproduit.jsp";
+    private String URLOk = "/WEB-INF/ajouterproduits.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,13 +38,14 @@ public class AjouterProduitServlet extends HttpServlet {
             throws ServletException, IOException {
         String nomProduit = request.getParameter("nom");
         String descProduit = request.getParameter("description");
-        int prixProduit = Integer.parseInt(request.getParameter("prix"));
-        String nomBoutique = URLDecoder.decode(request.getParameter("nomBoutique"), "UTF-8");
+        float prixProduit = Float.parseFloat(request.getParameter("prix"));
         
         Gestionnaire ge = new Gestionnaire();
         
         HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
+        
+        String nomBoutique = (String)session.getAttribute("boutiqueDefaut");
         
         if(session == null || session.getAttribute("login") == null || !session.getAttribute("login").equals(ge.getBoutiqueByName(nomBoutique).getAdmin().getLogin()))
         {
@@ -57,6 +59,10 @@ public class AjouterProduitServlet extends HttpServlet {
             
             String rep = ge.ajoutProduit(login + "'s Shop", new Produit(nomProduit, descProduit, prixProduit));
             
+
+            ArrayList<Produit> produits = ge.getProduits(nomBoutique);
+            request.setAttribute("produits", produits);
+            request.setAttribute("msg", "NomBoutique :" + nomBoutique + "; produits : " + ge.getProduits(nomBoutique));
             request.setAttribute("msg", rep);
             RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response);
@@ -78,7 +84,8 @@ public class AjouterProduitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
+        rd.forward(request, response);
     }
 
     /**

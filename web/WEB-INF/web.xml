@@ -81,10 +81,6 @@
         <url-pattern>/supprimerproduit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AjouterCommande</servlet-name>
-        <url-pattern>/ajoutercommande</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SupprimerCommande</servlet-name>
         <url-pattern>/supprimercommande</url-pattern>
     </servlet-mapping>
@@ -111,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>SupprimerBoutique</servlet-name>
         <url-pattern>/supprimerboutique</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjouterCommande</servlet-name>
+        <url-pattern>/ajoutercommande</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

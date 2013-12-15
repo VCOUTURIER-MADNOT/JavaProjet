@@ -75,7 +75,8 @@ public class InscrireServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(this.URLOk);
+            requestDispatcher.forward(request, response);
     }
 
     /**

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ValiderCommandeServlet extends HttpServlet {
 
-    private String URLOk = "/WEB-INF/validercommande.jsp";
+    private String URLOk = "/WEB-INF/affichercommandes.jsp";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,10 +56,12 @@ public class ValiderCommandeServlet extends HttpServlet {
         { 
             String login = (String) session.getAttribute("login");
             String idCommande = URLDecoder.decode((String)request.getParameter("idCommande"), "UTF-8");
-            boolean valide = ((String)request.getParameter("valide")).equals("oui");
             Boutique b = ge.getBoutiqueByAdmin(login);
-            String rep = ge.validerCommande(idCommande, valide, b.getNom());
+            String rep = ge.validerCommande(idCommande, true, b.getNom());
             
+            ArrayList<Commande> commandes = ge.afficherCommandes(b.getNom());
+            
+            request.setAttribute("commandes", commandes);
             request.setAttribute("msg", rep);
             RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response);

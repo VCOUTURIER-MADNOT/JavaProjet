@@ -32,14 +32,28 @@
 					    {
 					        out.println("<p style='text-align:center;'>Bienvenue " + session.getAttribute("nom") + "</p>");
 					%>
+                                                <a href="/JavaProjet/" style="margin-left: 27px">Accueil</a>
 					        <form name='deco' method='GET' action='/JavaProjet/deconnexion' style="margin: auto; width: 100px">
 					            <input type='submit' value='Déconnexion'>
 					        </form>
-                                                <a style="margin-left: 27px" href="/JavaProjet/affichercommande">Commandes</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/afficherproduits?boutique=">Produits</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/creerboutique">Ajout. Boutique</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/supprimerboutique">Suppr. Boutique</a>
-                                                <a style="margin-left: 27px" href="/JavaProjet/desinscrire">Desincrire</a>
+                                                
+                                        <%
+                                             if(session.getAttribute("aBoutique") !=null)
+                                             {
+                                                if (session.getAttribute("aBoutique").equals("non"))
+                                                {
+                                                    out.println("<a style='margin-left: 27px' href='/JavaProjet/creerboutique'>Ajout. Boutique</a>");
+                                                }
+                                                else
+                                                {
+                                                    out.println("<a style='margin-left: 27px' href='/JavaProjet/affichercommande'>Commandes</a>");
+                                                    out.println("<a style='margin-left: 27px' href='/JavaProjet/afficherproduits?boutique=" + URLEncoder.encode((String)(session.getAttribute("boutiqueDefaut")),"UTF-8") + "'>Produits</a>");
+                                                    out.println("<a style='margin-left: 27px' href='/JavaProjet/supprimerboutique'>Suppr. Boutique</a>");
+                                                    out.println("<a style='margin-left: 27px' href='/JavaProjet/ajouterproduit'>Ajout. Produit</a>");
+                                                }
+                                             }
+                                        %>
+                                                <a style="margin-left: 27px" href="/JavaProjet/desinscrire">Se désinscrire</a>
                                                 
 					<%
 					    }
@@ -53,18 +67,18 @@
 					                <input type="password" name="mdp">
 					                <input type="submit" value="Envoyer">
 					            </form>
+                                                    
+                                                    <a href="/JavaProjet/inscrire" style="text-align:center;">S'inscrire</a>
 					        </div>
 					<%
 					    }
 					    if(request.getAttribute("msg")!= null && !request.getAttribute("msg").equals("Réussi"))
 					    {
-					        out.println("<p style='text-align:center;'>"+request.getAttribute("msg")+"</p>");
+					        out.println("<br /><br /><p style='text-align:center;'>"+request.getAttribute("msg")+"</p>");
 					    }
                                         %>
                          
                          </div>
-			 <img id='panierBtn' src='/JavaProjet/img/java_0001s_0000s_0001_panier-button.png' class='image' onclick="document.write('panier')" style="cursor: pointer;"/>
-
 
 			 <!-- Section produits -->
 			 <div id='produits' class='clearfix'>
@@ -72,17 +86,19 @@
                                         <div id="produitList">
                                         <%
                                             
-                                            if (request.getAttribute("produits") != null){
-                                                ArrayList<Produit> produits = (ArrayList<Produit>) request.getAttribute("produits");
+                                            if (session.getAttribute("produits") != null){
+                                                ArrayList<Produit> produits = (ArrayList<Produit>) session.getAttribute("produits");
 				        
                                                 for(Produit p : produits)
                                                 {
-                                                    out.println("<p>"+ p.getNom() + "</p>");
+                                                    out.println("<a href='/JavaProjet/ajoutercommande?produits="+ URLEncoder.encode(p.getNom(),"UTF-8")+ "'/>" + p.getNom() + "</a><br /><br />");
                                                 }
                                             }
+                                            else
+                                            {
+                                                out.println("Veuillez vous connecter");
+                                            }
                                         %>
-                                        
-                                        <p>Test</p>
                                         </div>
 			 </div>
 
@@ -91,18 +107,18 @@
 					 <p class="text">Boutiques</p>
                                          <div id="boutiqueList">
 					 <%            
-                                            ArrayList boutiques = (ArrayList) request.getAttribute("boutiques");
+                                            ArrayList boutiques = (ArrayList) session.getAttribute("boutiques");
                                             if(boutiques != null)
                                             {
                                                 for(Object o : boutiques)
                                                 {
                                                     Boutique b = (Boutique) o;
-                                                    out.println("<a class='text' href='/JavaProjet/afficherproduits?boutique=" + URLEncoder.encode(b.getNom(),"UTF-8") + "'>" + b.getNom() + "</a>");
+                                                    out.println("<a href='/JavaProjet/afficherproduits?boutique=" + URLEncoder.encode(b.getNom(),"UTF-8") + "'>" + b.getNom() + "</a>");
                                                 }
                                             }
                                             else
                                             {
-                                                out.print("null");
+                                                out.print("Veuillez vous connecter");
                                             }
                                         %>
                                          </div>

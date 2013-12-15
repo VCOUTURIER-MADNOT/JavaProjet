@@ -4,22 +4,4 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<Commandes>
-  <Commande>
-    <Id>cd5cd040-2b3d-4a52-834d-fbb09964d26a</Id>
-    <Login>Maxence</Login>
-    <Valide>oui</Valide>
-    <ListeProduit>
-      <Produit>
-        <Nom>LEL1</Nom>
-        <Description>Valentin</Description>
-        <Prix>0.5</Prix>
-      </Produit>
-      <Produit>
-        <Nom>LEL2</Nom>
-        <Description>Valentin</Description>
-        <Prix>0.5</Prix>
-      </Produit>
-    </ListeProduit>
-  </Commande>
-</Commandes>
+<Commandes />

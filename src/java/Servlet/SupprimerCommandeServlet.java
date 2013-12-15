@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class SupprimerCommandeServlet extends HttpServlet {
 
-    private String URLOk = "/WEB-INF/supprimercommande.jsp";
+    private String URLOk = "/WEB-INF/affichercommandes.jsp";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,6 +59,8 @@ public class SupprimerCommandeServlet extends HttpServlet {
             String idCommande = URLDecoder.decode((String)request.getParameter("idCommande"), "UTF-8");
             String rep = ge.supprimerCommande(idCommande, b.getNom());
             
+            ArrayList<Commande> commandes = ge.afficherCommandes(b.getNom());
+            request.setAttribute("commandes", commandes);
             request.setAttribute("msg", rep);
             RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response);

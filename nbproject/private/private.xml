@@ -12,26 +12,37 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Utilisateurs.xml</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/InscrireServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/DeconnexionServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/ValiderCommandeServlet.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/SupprimerBoutiqueServlet.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/index.jsp</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AfficherProduitsServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/ConnexionServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AjouterProduitServlet.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AfficherBoutiqueServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/afficherproduits.jsp</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/affichercommandes.jsp</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AfficherBoutiqueServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/style.css</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/afficherboutiques.jsp</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AjouterCommandeServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/NotifyList.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/Gestionnaire.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Utilisateurs.xml</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Server/UDPRequestHandler.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/JavaRMI/Boutiques.xml</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Boutique/Classes/Commande.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/ajouterproduits.jsp</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/inscrire.jsp</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/index.jsp</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/SupprimerBoutiqueServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AfficherProduitsServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/creerboutique.jsp</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/web/WEB-INF/affichercommandes.jsp</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/CreerBoutiqueServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AjouterCommandeServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Util/NotifyLists/CommandeNotifyList.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/SupprimerProduitServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/SupprimerCommandeServlet.java</file>
-            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/Gestionnaire.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/DesinscrireServlet.java</file>
             <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Servlet/AfficherCommandeServlet.java</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Produits.xml</file>
+            <file>file:/C:/Users/Maxence/Desktop/L3/JavaProjet/src/java/Commandes.xml</file>
         </group>
     </open-files>
 </project-private>

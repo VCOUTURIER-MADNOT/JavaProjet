@@ -25,4 +25,9 @@ and open the template in the editor.
     <Description>Valentin</Description>
     <Prix>0.5</Prix>
   </Produit>
+  <Produit>
+    <Nom>LEL42</Nom>
+    <Description>LEL42Desc</Description>
+    <Prix>0.9</Prix>
+  </Produit>
 </Produits>

@@ -86,7 +86,7 @@ public class Commande {
         {
             p.add((Produit)Produit.getObjectFromElement(eProduit));
         }
-        return new Commande(_e.getChildText("Id"), _e.getChildText("Login"), _e.getChildText("Valide") == "oui" , p );
+        return new Commande(_e.getChildText("Id"), _e.getChildText("Login"), _e.getChildText("Valide").equals("oui") , p );
     }
     
     public static Element getElementFromObject(Object _o) {

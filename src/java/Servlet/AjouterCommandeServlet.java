@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 public class AjouterCommandeServlet extends HttpServlet {
 
-    private String URLOk = "/WEB-INF/ajoutercommande.jsp";
+    private String URLOk = "/WEB-INF/index.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,7 +60,7 @@ public class AjouterCommandeServlet extends HttpServlet {
             produits.addAll(Arrays.asList(nomProduits));
             
             // On ajoute la commande
-            Boutique b = (Boutique)session.getAttribute("boutiqueActuelle");
+            Boutique b = (Boutique)ge.getBoutiqueByName((String)session.getAttribute("boutiqueActuelle"));
             String rep = ge.ajouterCommande(produits, (String)session.getAttribute("login"), b.getNom());
             
             request.setAttribute("msg", rep);

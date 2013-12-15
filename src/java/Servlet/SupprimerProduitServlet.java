@@ -10,6 +10,7 @@ import Boutique.Classes.Produit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class SupprimerProduitServlet extends HttpServlet {
 
-    private String URLOk = "/WEB-INF/supprimerproduit.jsp";
+    private String URLOk = "/WEB-INF/afficherproduits.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,10 +39,11 @@ public class SupprimerProduitServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String nomProduit = request.getParameter("nomProduit");
-        String nomBoutique = URLDecoder.decode(request.getParameter("nomBoutique"), "UTF-8");
         
         HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
+        
+        String nomBoutique = (String)session.getAttribute("boutiqueDefaut");
         
         Gestionnaire ge = new Gestionnaire();
         if(session == null || session.getAttribute("login") == null || !session.getAttribute("login").equals(ge.getBoutiqueByName(nomBoutique).getAdmin().getLogin()))
@@ -56,6 +58,9 @@ public class SupprimerProduitServlet extends HttpServlet {
             
             String rep = ge.supprimerProduit(login + "'s Shop", nomProduit);
             
+            ArrayList<Produit> produits = ge.getProduits(nomBoutique);
+            request.setAttribute("produits", produits);
+            request.setAttribute("msg", "NomBoutique :" + nomBoutique + "; produits : " + ge.getProduits(nomBoutique));
             request.setAttribute("msg", rep);
             RequestDispatcher rd = request.getRequestDispatcher(this.URLOk);
             rd.forward(request, response);

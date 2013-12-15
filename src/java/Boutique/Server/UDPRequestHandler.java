@@ -1,7 +1,6 @@
 package Boutique.Server;
 
 import Boutique.Classes.Commande;
-import Boutique.Classes.Produit;
 import Util.NotifyLists.CommandeNotifyList;
 import java.io.IOException;
 import java.io.StringReader;
@@ -128,8 +127,9 @@ public class UDPRequestHandler extends Thread {
         {
             Commande c = (Commande)this.listeCommande.getObjectFromElement(element);
             this.listeCommande.remove(c);
-            c.setValide(this.racine.getChildText("Valide").equals("oui"));
+            c.setValide(true);
             this.listeCommande.add(c, true);
+            
             msg.addContent("Commande modifiee");
         }
         else 
@@ -148,6 +148,7 @@ public class UDPRequestHandler extends Thread {
         for (Commande p: this.listeCommande)
         {
             response.addContent(this.listeCommande.getElementFromObject(p));
+            System.out.println("Commande " + p.getId() + " : " + p.getValide());
         }
         
         return d;
